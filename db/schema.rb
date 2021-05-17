@@ -51,6 +51,19 @@ ActiveRecord::Schema.define(version: 2021_05_16_123415) do
     t.integer "price"
     t.string "image_id"
     t.boolean "is_active"
+    
+ActiveRecord::Schema.define(version: 2021_05_16_220643) do
+
+  create_table "cart_items", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "customer_id"
+    t.integer "product_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
