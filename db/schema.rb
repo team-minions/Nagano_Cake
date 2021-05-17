@@ -24,6 +24,9 @@ ActiveRecord::Schema.define(version: 2021_05_17_024210) do
   create_table "order_items", force: :cascade do |t|
     t.integer "order_id"
     t.integer "product_id"
+    t.integer "product_count"
+    t.integer "making_status"
+    t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -31,6 +34,12 @@ ActiveRecord::Schema.define(version: 2021_05_17_024210) do
   create_table "orders", force: :cascade do |t|
     t.integer "shipping_fee"
     t.integer "customer_id"
+    t.integer "pay_amount"
+    t.integer "pay_method"
+    t.string "delivery_name"
+    t.string "delivery_postcode"
+    t.string "delivery_address"
+    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
