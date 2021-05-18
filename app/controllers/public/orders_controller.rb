@@ -1,13 +1,15 @@
-class OrdersController < ApplicationController
-    
-    def new 
+
+class Public::OrdersController < ApplicationController
+
+    def new
     end
-    
+
     def confirm
     end
 
     def create
     end
+
     
     def complete
     end
@@ -18,12 +20,5 @@ class OrdersController < ApplicationController
     def show
     end
     
-    
-    
-    
-    
-    
-    
-    
-    
+
 end
