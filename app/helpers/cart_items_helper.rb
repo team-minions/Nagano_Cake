@@ -1,2 +1,2 @@
-module CartItemHelper
+module CartItemsHelper
 end
