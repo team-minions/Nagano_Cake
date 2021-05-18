@@ -1,2 +1,0 @@
-module Admin::OdersHelper
-end
