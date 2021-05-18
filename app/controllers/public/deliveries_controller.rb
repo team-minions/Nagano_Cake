@@ -1,4 +1,4 @@
-class DeliveriesController < ApplicationController
+class Public::DeliveriesController < ApplicationController
   def index
   end
 
