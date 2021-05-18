@@ -7,5 +7,5 @@ class Admin::OdersController < ApplicationController
   end
   
   def update
-end
+  end
 end
