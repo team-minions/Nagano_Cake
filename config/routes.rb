@@ -1,6 +1,22 @@
 Rails.application.routes.draw do
+  
+  devise_for :admin, skip: :all
+   devise_scope :admin do
+     get "/admin/sign_in", to: "admin/sessions#new",as: :new_admin_session
+     post "/admin/sign_in", to: "admin/sessions#create",as: :admin_session
+     delete "/admin/sign_out", to: "admin/sessions#destroy",as: :destroy_admin_session
+   end
+   
+  devise_for :customers, skip: :all
+   devise_scope :customer do
+    get '/customers/sign_up', to: 'public/registrations#new', as: :new_customer_registration
+    post '/customers', to: 'public/registrations#create', as: :customer_registration
+    get "/customers/sign_in", to: "public/sessions#new", as: :new_customer_session
+    post "/customers/sign_in", to: "public/sessions#create",as: :customer_session
+    delete "/customers/sign_out", to: "public/sessions#destroy",as: :destroy_customer_session
+  end
+  
   scope module: :public do
-    devise_for :customers
     root to: "homes#top"
     resource :customers
     resources:products,only: [:index, :show]
@@ -10,13 +26,12 @@ Rails.application.routes.draw do
     post "orders/confirm"=> "oders#confirm"
     get "orders/complete"=> "oders#complete"
     get "customers/retire" => "cutomers#retilre"
-    get "homes/about" => "homes#about"
+    get "/about" => "homes#about"
     delete "carts_items/destroy_all" => "carts_items#destroy_all"
     patch "customers/retire" => "customers#confirm"
   end
 
   namespace :admin do
-   devise_for :admins
    resources:customers,only: [:index, :show, :edit, :update]
    resources:products,only: [:index, :show, :new, :create, :edit, :update]
    resources:oders,only: [:index, :show, :update]
