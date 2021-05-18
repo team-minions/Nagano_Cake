@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  
+
   devise_for :admin, skip: :all
    devise_scope :admin do
      get "/admin/sign_in", to: "admin/sessions#new",as: :new_admin_session
      post "/admin/sign_in", to: "admin/sessions#create",as: :admin_session
      delete "/admin/sign_out", to: "admin/sessions#destroy",as: :destroy_admin_session
    end
-   
+
   devise_for :customers, skip: :all
    devise_scope :customer do
     get '/customers/sign_up', to: 'public/registrations#new', as: :new_customer_registration
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     post "/customers/sign_in", to: "public/sessions#create",as: :customer_session
     delete "/customers/sign_out", to: "public/sessions#destroy",as: :destroy_customer_session
   end
-  
+
   scope module: :public do
     root to: "homes#top"
     resource :customers
