@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     resources:products,only: [:index, :show]
     resources:cart_items,only: [:index, :create,:update, :destroy]
     resources:deliveries,only: [:index, :create, :edit, :update, :destroy]
-    resources:oders,only: [:new, :create, :index, :show]
+    resources:orders,only: [:new, :create, :index, :show]
     post "orders/confirm"=> "oders#confirm"
     get "orders/complete"=> "oders#complete"
     get "customers/retire" => "cutomers#retilre"
@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   namespace :admin do
    resources:customers,only: [:index, :show, :edit, :update]
    resources:products,only: [:index, :show, :new, :create, :edit, :update]
-   resources:oders,only: [:index, :show, :update]
+   resources:orders,only: [:index, :show, :update]
    resources:genres,only: [:index, :edit, :create, :update]
    resources:order_items,only: [:update]
  end
