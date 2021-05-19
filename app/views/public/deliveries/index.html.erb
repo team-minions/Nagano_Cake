@@ -10,18 +10,17 @@
       </div>
       <div class="form-group">
         <h6 class="delivery_address">住所</h6>
-        <%= f.text_area :postcode %>
+        <%= f.text_area :adress %>
       </div>
       <div class="form-group">
         <h6 class="delivery_name">宛名</h6>
-        <%= f.text_area :postcode %>
+        <%= f.text_area :name %>
       </div>
         <%= f.submit '新規登録', class: "btn btn- btn btn-success" %>
     <% end %>
 
 
     <div class="col-md-8 offset-md-1">
-      <h2>Books</h2>
       <table class="table table-striped">
         <thead>
           <tr>

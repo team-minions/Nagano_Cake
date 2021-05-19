@@ -1,6 +1,6 @@
 class Public::DeliveriesController < ApplicationController
   def index
-    # @deliveries = @customer.deliveries
+    @deliveries = @customer.deliveries
     @delivery = Delivery.new
   end
 
@@ -8,6 +8,8 @@ class Public::DeliveriesController < ApplicationController
   end
 
   def edit
+    @delivery = Delivery.find(params[:id])
+    redirect_to deliveries_path
   end
 
   def update

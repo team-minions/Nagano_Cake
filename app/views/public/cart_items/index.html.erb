@@ -1,0 +1,32 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-8 offset-md-1">
+      <h2>注文情報確認</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>単価</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th></th>
+
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @cart_items.each do |cart_item| %>
+            <tr>
+              <td><%= product.name %></td>
+              <td><%= product.price %></td>
+              <td><%= cart_item.product_count %></td>
+              <td><%= product.price*cart_item.product_count %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
