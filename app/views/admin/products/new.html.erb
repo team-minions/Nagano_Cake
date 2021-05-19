@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="">商品新規登録</div>
+        <div class="">
+            <%= form_with(model:[@product, @genres], remote: true) do |f| %>
+            <table>
+                <tr>
+                    <td>商品画像</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>商品名</td>
+                    <td><%= f.text_field :name, rows:'5',placeholder: "商品名" %></td>
+                </tr>
+                <tr>
+                    <td>商品説明</td>
+                    <td><%= f.text_area :description, rows:'5', placeholder: "商品" </td>
+                </tr>
+                <tr>
+                    <td>ジャンル</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>税抜価格</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>販売ステータス</td>
+                    <td></td>
+                </tr>
+            </table>
+            <%= f.submit "送信する" %>
+            <% end %>
+        </div>
+    </div>
+</div>
