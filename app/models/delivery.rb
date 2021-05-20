@@ -3,5 +3,5 @@ class Delivery < ApplicationRecord
   
   validates :name, presence: true
   validates :postcode, presence: true, format: {with: /\A\d{7}\z/}
-  validates :adress, presence: true
+  validates :address, presence: true
 end

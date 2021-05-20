@@ -2,12 +2,12 @@
 
   <div class="row">
     <div class="col-md-8 offset-md-1">
-      <h2>ショッピングカート</h2>
+      <h4>ショッピングカート</h4>
       <table class="table table-striped">
         <thead>
           <tr>
             <th>商品名</th>
-            <th>単価</th>
+            <th>単価（税込）</th>
             <th>数量</th>
             <th>小計</th>
             <th></th>
@@ -15,13 +15,19 @@
          </thead>
 
         <tbody>
+          <% @sum = 0 %>
           <% @cart_items.each do |cart_item| %>
             <tr>
               <td><%= product.name %></td>
-              <td><%= product.price %></td>
-              <td><%= cart_item.product_count %></td>
-              <!--session使用？-->
+              <td><%= product.price*@tax %></td>
+              <!--<td><%#= @tax_include %></td>-->
+              <td>
+                <%= form_with model: @cart_item do |f| %>
+                  <%= f.select :product_count, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8], ["9", 9], ["10", 10]] %>
+                <% end %>
+              </td>
               <td><%= subtotal %></td>
+              <td><%= link_to '削除', cart_item_path(@cart_item.id), method: :delete,  class: "btn btn-sm btn-danger" %></td>
             </tr>
           <% end %>
         </tbody>
@@ -29,23 +35,9 @@
 
       <table>
         <tr>
-          <th>送料</th>
-          <td><%= shipping_fee %></td>
-        </tr>
-        <tr>
-          <th>商品合計</th>
-          <td><%= shipping_fee %></td>
-        </tr>
-        <tr>
-          <th>請求合計</th>
+          <th>合計</th>
           <td><%= shipping_fee %></td>
         </tr>
       </table>
-      <div class="pay_method">
-        支払い方法 <%= @order.pay_method %></div>
-      </div>
-      <div class="delivery_address">
-        お届け先 <%= @order.delivery_address %></div>
-      </div>
   </div>
 </div>
