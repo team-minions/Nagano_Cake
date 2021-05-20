@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="">
+            <%= form_with model :order, remote: true do |f| %>
+            <div class="">注文情報入力</div>
+            <div class="pay_method">
+                <%= f.label :pay_method_card %>
+                <%= f.radio_button :pay_method, :0 %>
+                <%= f.label :pay_method_cash %>
+                <%= f.radio_button :pay_method, :1 %>
+            </div>
+            <div class="deliveries">
+                <%= form.radio_button :gender, :male %>
+                <%= form.radio_button :gender, :female %>
+                <%= form.radio_button :gender, :male %>
+            </div>
+            
+            
+            
+            
+            <% end %>
+            
+            
+            
+            
+            
+        </div>
+    </div>
+</div>

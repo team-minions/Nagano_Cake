@@ -1,36 +1,43 @@
-<div class="container">
-    <div class="row">
-        <div class="">商品新規登録</div>
-        <div class="">
-            <%= form_with(model:[@product, @genres], remote: true) do |f| %>
-            <table>
-                <tr>
-                    <td>商品画像</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>商品名</td>
-                    <td><%= f.text_field :name, rows:'5',placeholder: "商品名" %></td>
-                </tr>
-                <tr>
-                    <td>商品説明</td>
-                    <td><%= f.text_area :description, rows:'5', placeholder: "商品" </td>
-                </tr>
-                <tr>
-                    <td>ジャンル</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>税抜価格</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>販売ステータス</td>
-                    <td></td>
-                </tr>
-            </table>
-            <%= f.submit "送信する" %>
-            <% end %>
-        </div>
-    </div>
+<div class="container pt-3">
+　<h4 class="col-md-3 offset-1 bg-light text-center mt-2">商品新規登録</h4>
+
+　<div class="row pt-4">
+    <%= form_with model:[:admin, @product], local:true do |f| %>
+     <table class="table mx-auto table-borderless">
+       <tbody>
+        <tr>
+          <td>商品画像</td>
+          <td><%= f.attachment_field :image %></td>
+        </tr>
+        <tr>
+          <td>商品名</td>
+          <td><%= f.text_field :name, placeholder: "商品名" %></td>
+        </tr>
+        <tr>
+          <td>商品説明</td>
+          <td><%= f.text_area :description, placeholder: "ここに説明文を記述" %></td>
+        </tr>
+        <tr>
+          <td>ジャンル</td>
+          <td><%= f.collection_select :genre_id, @genres, :id, :name, prompt: "--選択してください--" %></td>
+        </tr>
+        <tr>
+          <td>税抜価格</td>
+          <td><%= f.text_field :price, placeholder: "1000" %> 円</td>
+        </tr>
+        <tr>
+          <td>販売ステータス</td>
+          <td>
+            <%= f.radio_button :is_active, :sale, checked: true %>
+            <%= f.label :is_active, "販売中", {value: :sale, style: "display: inline-block;"} %>
+            <%= f.radio_button :is_active, :sale_stop %>
+            <%= f.label :is_active, "販売停止中", {value: :sale_stop, style: "display: inline-block;"} %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <%= f.submit "新規登録", class: "btn btn-success my-2" %>
+
+    <% end %>
+　</div>
 </div>
