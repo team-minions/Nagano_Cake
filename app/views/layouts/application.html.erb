@@ -9,6 +9,63 @@
   </head>
 
   <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-warning">
+        <div class="container">
+          <%= link_to "NaganoCake", root_path, class: "navbar-brand" %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+         
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              
+              <!--会員ログイン-->
+              <% if customer_signed_in? %>
+                <li class="mr-5 pt-2 text-light">ようこそ、<span class="mr-1"><%= current_customer.last_name %><%= current_customer.first_name %></span>さん！</li>
+                <li><%= link_to "マイページ", customers_path, class: "btn btn-outline-light nav-link text-light m-2" %></li>
+                <li><%= link_to "商品一覧", products_path, class: "btn btn-outline-light nav-link text-light m-2" %></li>
+                <li><%= link_to "カート", cart_items_path, class: "btn btn-outline-light nav-link text-light m-2" %></li>
+                <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-light nav-link text-light m-2" %></li>
+              
+              <!--管理者ログイン-->
+              <% elsif admin_signed_in? %>
+                <li><%= link_to "商品一覧", admin_products_path, class: "btn btn-outline-light nav-link text-light m-2" %></li>
+                <li><%= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-light nav-link text-light m-2" %></li>
+                <li><%= link_to "注文履歴一覧", admin_orders_path, class: "btn btn-outline-light nav-link text-light m-2" %></li>
+                <li><%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-light nav-link text-light m-2" %></li>
+                <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-light nav-link text-light m-2" %></li>
+              
+                <!--ログイン前-->
+              <% else %>
+                <li><%= link_to "About", about_path, class: "btn btn-outline-light nav-link text-light m-2" %></li>
+                <li><%= link_to "商品一覧", products_path, class: "btn btn-outline-light nav-link text-light m-2" %></li>
+                <li><%= link_to "新規登録", new_customer_registration_path, class: "btn btn-outline-light nav-link text-light m-2" %></li>
+                <li><%= link_to "ログイン", new_customer_session_path, class: "btn btn-outline-light nav-link text-light m-2" %></li>
+                
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    
+      <!--検索窓(検索機能は後で)-->
+    <% if admin_signed_in? %>
+      <form class="form-inline m-2 float-right">
+        <input class="form-control mr-sm-2" type="search" placeholder="会員名or商品名" aria-label="Search">
+        <button class="btn btn-outline-info my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+      </form>
+    <% end %>
+    
+    <main>
     <%= yield %>
+    </main>
+    
+    <footer class="footer col-md-12 bg-warning">
+      <div class="container">
+        <p class="text-center mx-auto text-light p-3">NaganoCake</p>
+      </div>
+    </footer>
   </body>
 </html>

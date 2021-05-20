@@ -1,9 +1,10 @@
 <div class="container pt-3">
   <h3 class="col-md-3 offset-1 bg-light text-center mt-2">注文履歴一覧</h3>
-  <div class="row pt-3">
 
-      <table class="table mx-auto col-10 border">
-        <thead class="thead-light">
+  <div class="row pt-4">
+
+      <table class="table col-md-10 mx-auto table-hover">
+        <thead>
           <tr>
             <th>購入日時</th>
             <th>購入者</th>
@@ -22,6 +23,6 @@
           <% end %>
         </tbody>
       </table>
-      <%# ここにkaminari利用 %>
-    </div>
+      <%= paginate @orders %>
+  </div>
 </div>
