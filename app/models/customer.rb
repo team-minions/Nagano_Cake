@@ -3,12 +3,12 @@ class Customer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
+        # 
   def full_name
     first_name+last_name
   end
 
-  def full_name_kana
-    first_name_kana+last_name_kana
+  def furigana_full_name
+    furigana_first_name+furigana_last_name
   end
 end
