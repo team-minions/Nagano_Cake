@@ -2,7 +2,7 @@
 
   <div class="row">
     <div class="col-md-8 offset-md-1">
-      <h2>注文情報確認</h2>
+      <h2>ショッピングカート</h2>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -11,10 +11,8 @@
             <th>数量</th>
             <th>小計</th>
             <th></th>
-
-            <th colspan="3"></th>
           </tr>
-        </thead>
+         </thead>
 
         <tbody>
           <% @cart_items.each do |cart_item| %>
@@ -22,11 +20,32 @@
               <td><%= product.name %></td>
               <td><%= product.price %></td>
               <td><%= cart_item.product_count %></td>
-              <td><%= product.price*cart_item.product_count %></td>
+              <!--session使用？-->
+              <td><%= subtotal %></td>
             </tr>
           <% end %>
         </tbody>
       </table>
-    </div>
+
+      <table>
+        <tr>
+          <th>送料</th>
+          <td><%= shipping_fee %></td>
+        </tr>
+        <tr>
+          <th>商品合計</th>
+          <td><%= shipping_fee %></td>
+        </tr>
+        <tr>
+          <th>請求合計</th>
+          <td><%= shipping_fee %></td>
+        </tr>
+      </table>
+      <div class="pay_method">
+        支払い方法 <%= @order.pay_method %></div>
+      </div>
+      <div class="delivery_address">
+        お届け先 <%= @order.delivery_address %></div>
+      </div>
   </div>
 </div>
