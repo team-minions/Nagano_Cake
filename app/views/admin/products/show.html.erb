@@ -17,11 +17,11 @@
                 </tr>
                 <tr>
                     <td>ジャンル</td>
-                    <td><%= @product.genres.name %></td>
+                    <td><%= @product.genre_id %></td>
                 </tr>
                 <tr>
                     <td>税込価格<br>(税抜価格)</td>
-                    <td><%= @product.price*1.08.to_s(:delimited) %> ( <%= @product.price.to_s(:delimited)%> )</td>
+                    <td><%= @price_tax_included.to_s(:delimited) %> ( <%= @product.price.to_s(:delimited)%> )</td>
                 </tr>
                 <tr>
                     <td>販売ステータス</td>
