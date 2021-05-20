@@ -1,0 +1,43 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-8 offset-md-1">
+      <h4>ショッピングカート</h4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th></th>
+          </tr>
+         </thead>
+
+        <tbody>
+          <% @sum = 0 %>
+          <% @cart_items.each do |cart_item| %>
+            <tr>
+              <td><%= product.name %></td>
+              <td><%= product.price*@tax %></td>
+              <!--<td><%#= @tax_include %></td>-->
+              <td>
+                <%= form_with model: @cart_item do |f| %>
+                  <%= f.select :product_count, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8], ["9", 9], ["10", 10]] %>
+                <% end %>
+              </td>
+              <td><%= subtotal %></td>
+              <td><%= link_to '削除', cart_item_path(@cart_item.id), method: :delete,  class: "btn btn-sm btn-danger" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <table>
+        <tr>
+          <th>合計</th>
+          <td><%= shipping_fee %></td>
+        </tr>
+      </table>
+  </div>
+</div>
