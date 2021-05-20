@@ -18,14 +18,14 @@
             <th></th>
           </tr>
         </thead>
-        <thead>
+        <tbody>
         <% @genres.each do |genre| %>
         <tr class="border-bottom">
           <th class="align-middle"><%= genre.name %></th>
           <th class="text-right"><%= link_to "編集する", edit_admin_genre_path(genre.id), class:"btn btn-success btn-sm" %></th>
         </tr>
         <% end %>
-        </thead>
+        </tbody>
       </table>
     </div>
   </div>
