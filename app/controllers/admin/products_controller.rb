@@ -7,11 +7,13 @@ class Admin::ProductsController < ApplicationController
 
     def show
         @product = Product.find(params[:id])
-        
+        @price_tax_included = @product.price.to_s*1.08
+          
     end
 
     def new
         @product = Product.new
+        @genre = Genre.new
     end
 
     def create

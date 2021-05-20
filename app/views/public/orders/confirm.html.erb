@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+        <div class="">注文情報確認</div>
+        <div class="">
+            <table>
+                <tr>
+                    <td>商品名</td>
+                    <td>単価(税込)</td>
+                    <td>数量</td>
+                    <td>小計</td>
+                </tr>
+                <%= @order_items.each do |order_item| %>
+                <tr>
+                    <td><%= order_item.product_id %></td>
+                    <td><%= order_item.product_id.price %></td>
+                    <td><%= order_item.product_count %></td>
+                    <td><%= %></td>
+                </tr>
+                <% end %>
+            </table>
+        </div>
+        <div class="">
+            <table>
+                <tr>
+                    <td>送料</td>
+                    <td>800</td>
+                </tr>
+                <tr>
+                    <td>商品合計</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>請求金額</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div class="">
+            <table>
+                <tr>
+                    <td>支払方法</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>お届け先</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
