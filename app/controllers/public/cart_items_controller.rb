@@ -1,11 +1,14 @@
 class Public::CartItemsController < ApplicationController
   def index
-    @cart_items = Cart_item.all
-    @tax = 1.10
-    @tax_included = Cart_item.count* @tax
+    @cart_items = current_customer.cart_items.all
+    @tax = 1.1
   end
 
   def create
+    @cart_item = current_customer.cart_items.new(cart_item_params)
+    if @cart_item.save
+      redirect_to cart_items_path
+    end
   end
 
   def update
@@ -18,5 +21,11 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy_all
+  end
+
+    private
+
+  def cart_item_params
+    params.require(:cart_item).permit(:count,:product_id)
   end
 end

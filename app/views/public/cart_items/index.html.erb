@@ -1,8 +1,8 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-md-8 offset-md-1">
-      <h4>ショッピングカート</h4>
+    <h4 class="col-md-3 offset-1 bg-light text-center mt-2">ショッピングカート</h4>
+    <%= link_to 'カートを空にする', carts_items_destroy_all_path(@cart_items), method: :delete,data: { confirm: '本当に消去しますか?' },  class: "btn btn-sm btn-danger" %>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -15,19 +15,19 @@
          </thead>
 
         <tbody>
-          <% @sum = 0 %>
           <% @cart_items.each do |cart_item| %>
             <tr>
-              <td><%= product.name %></td>
-              <td><%= product.price*@tax %></td>
+              <td><%= cart_item.product.name %></td>
+              <td><%= cart_item.product.price * @tax %></td>
               <!--<td><%#= @tax_include %></td>-->
               <td>
                 <%= form_with model: @cart_item do |f| %>
-                  <%= f.select :product_count, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], ["8", 8], ["9", 9], ["10", 10]] %>
+                  <%= f.select :product_count, [*1..100] %>
+                  <%= f.submit "変更する", class:"btn btn-primary btn-block btn-base-1 mb-3" %>
                 <% end %>
               </td>
-              <td><%= subtotal %></td>
-              <td><%= link_to '削除', cart_item_path(@cart_item.id), method: :delete,  class: "btn btn-sm btn-danger" %></td>
+              <td><%= cart_item.product_count * product.price * @tax%>円</td>
+              <td><%= link_to '削除', cart_items_path(cart_item), method: :delete,  class: "btn btn-sm btn-danger" %></td>
             </tr>
           <% end %>
         </tbody>
@@ -35,9 +35,11 @@
 
       <table>
         <tr>
-          <th>合計</th>
-          <td><%= shipping_fee %></td>
+          <th>合計金額</th>
+          <td><%= @cart_itemcart_item_sum %></td>
         </tr>
       </table>
+      <%= link_to '買い物を続ける', products_path, class: "btn btn-sm btn-primary" %>
+      <%#= link_to '情報入力に進む', new_oder_path, class: "btn btn-sm btn-success" %>
   </div>
 </div>
