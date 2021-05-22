@@ -11,7 +11,4 @@ class Product < ApplicationRecord
   # numericality〜整数のみというバリデーションらしいので記述
   validates :price, presence: true, numericality: { only_integer: true }
 	
-def subtotal
-  cart_item.product_count * price
-end
 end

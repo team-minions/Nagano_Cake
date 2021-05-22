@@ -4,6 +4,9 @@ class Public::CartItemsController < ApplicationController
   def index
     @cart_items = current_customer.cart_items.all
     @tax = 1.1
+    @subtotal = @cart_items.map { |cart_item| (Product.find(cart_item.product_id).price * @tax * cart_item.product_count ).to_i }
+    @sum = @subtotal.sum.to_i
+    @i = 0
   end
 
   def create
@@ -19,7 +22,7 @@ class Public::CartItemsController < ApplicationController
   def destroy
     @cart_item = CartItem.find(params[:id])
     @cart_item.destroy
-    redirect_to cart_item_path
+    redirect_to cart_items_path
   end
 
   def destroy_all
@@ -30,8 +33,11 @@ class Public::CartItemsController < ApplicationController
     # else
     #   render action: :index
     # end
-   current_customer.cart_items.destroy_all
-   redirect_to cart_items_path
+  current_customer.cart_items.destroy_all
+  @cart_item = current_customer.cart_items
+  @cart_item.destroy_all
+  flash[:alert] = "カートの商品を全て削除しました"
+  redirect_to cart_items_path
   end
 
     private

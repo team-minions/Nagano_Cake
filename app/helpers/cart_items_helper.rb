@@ -1,5 +1,5 @@
 module CartItemsHelper
-  def number_to_currency(price)
+  def converting_to_jpy(price)
     "#{price.to_s(:delimited, delimiter: ',')}"
   end
 end

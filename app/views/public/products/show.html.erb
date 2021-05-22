@@ -11,7 +11,6 @@
       <div>¥<%= @product.price %>（税込）</div>
 
       <% if customer_signed_in? %>
-      <%#= render 'public/cart_items/cart_in', cart_item: @cart_item %>
         <%= form_for(@cart_item) do |f| %>
           <%= f.select :product_count,  [*1..100], { include_blank: '個数選択' } %>
           <%= f.hidden_field :product_id, :value => @product.id %>
