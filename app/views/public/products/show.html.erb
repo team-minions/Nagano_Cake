@@ -1,33 +1,22 @@
-<div class="container">
-  <div class="row">
+<!--<div class="container">-->
+<!--  <div class="row">-->
+<!--    <div class="col-md-8 offset-md-1">-->
+        <a>
+          <%= product_path(@product.id) do %>
+            <%= attachment_image_tag @product, :image, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %>
+          <% end %>
+        </a>
+      <h4><%= @product.name %></h4>
+      <div><%= @product.description %></div>
+      <div>¥<%= @product.price %>（税込）</div>
 
-    <div class="col-md-8 offset-md-1">
-      <h2>Book detail</h2>
-
-        <table class="table table-striped">
-
-            <tbody>
-                <tr>
-                  <td>
-                    <a>
-                      <%= product_path(@product.id) do %>
-                        <%= attachment_image_tag @product, :image, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %>
-                      <% end %>
-                    </a>
-                  </td>
-                  <td><%= @product.name %>
-                  <td><%= @product.descriprion %></td>
-                  <td><%= @product.price %>円</td>
-
-                  <% if @customer == current_customer %>
-                    <td><%= form_with model: @order_items do |f| %></td>
-                      <td><%= f.select :product_count, [["1個", 1], ["2個", 2], ["3個", 3], ["4個", 4], ["5個", 5], {include_blank: '選択してください' }] %></td>
-                      <td><%= f.submit 'カートに入れる', class: "btn btn- btn btn-success" %></td>
-                    <% end %>
-                  <% end %>
-                </tr>
-          </tbody>
-        </table>
-    </div>
-  </div>
-</div>
+      <% if customer_signed_in? %>
+        <%= form_for(@cart_item) do |f| %>
+          <%= f.select :product_count,  [*1..100], { include_blank: '個数選択' } %>
+          <%= f.hidden_field :product_id, :value => @product.id %>
+          <%= f.submit 'カートに入れる', class: "btn btn- btn btn-success" %>
+        <% end %>
+      <% end %>
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
