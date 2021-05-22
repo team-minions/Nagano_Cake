@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resource :customers
     get "orders/complete"=> "orders#complete"
     resources:products,only: [:index, :show]
+    delete "cart_items/destroy_all" => "cart_items#destroy_all"
     resources:cart_items,only: [:index, :create,:update, :destroy]
     resources:deliveries,only: [:index, :create, :edit, :update, :destroy]
     resources:orders,only: [:new, :create, :index, :show]
@@ -28,7 +29,6 @@ Rails.application.routes.draw do
    
     get "customers/retire" => "cutomers#retilre"
     get "/about" => "homes#about"
-    delete "carts_items/destroy_all" => "carts_items#destroy_all"
     patch "customers/retire" => "customers#confirm"
   end
 
