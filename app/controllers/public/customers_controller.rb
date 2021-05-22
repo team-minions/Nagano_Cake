@@ -12,6 +12,10 @@ class Public::CustomersController < ApplicationController
     end
 
     def retire
+        customer = Customer.find_by(id: current_customer.id)
+        customer.update(is_deleted: true)
+        reset_session
+        redirect_to root_path
     end
 
     def confirm

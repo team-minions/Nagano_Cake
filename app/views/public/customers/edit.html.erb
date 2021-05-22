@@ -56,7 +56,7 @@
       <div class="col-8">
         <%= f.email_field :email,class:"mb-4"%><br>
         <!--customers_retire_pathについては要相談？-->
-        <%= f.submit "編集内容を保存する",class:"btn btn-success"%><%= link_to "退会する", customers_retire_path ,class:"btn btn-danger ml-3"%>
+        <%= f.submit "編集内容を保存する",class:"btn btn-success"%><%= link_to "退会する", customers_confirm_path ,class:"btn btn-danger ml-3"%>
       </div>
     </div>
     <%end%>
