@@ -19,12 +19,13 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: "homes#top"
     resource :customers
+    get "orders/complete"=> "orders#complete"
     resources:products,only: [:index, :show]
     resources:cart_items,only: [:index, :create,:update, :destroy]
     resources:deliveries,only: [:index, :create, :edit, :update, :destroy]
     resources:orders,only: [:new, :create, :index, :show]
     post "orders/confirm"=> "orders#confirm"
-    get "orders/complete"=> "orders#complete"
+   
     get "customers/retire" => "cutomers#retilre"
     get "/about" => "homes#about"
     delete "carts_items/destroy_all" => "carts_items#destroy_all"

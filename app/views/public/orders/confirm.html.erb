@@ -9,12 +9,12 @@
                     <td>数量</td>
                     <td>小計</td>
                 </tr>
-                <% @cart_items.each do |cart_item| %>
+                <% @cart_items.zip(@subtotals) do |cart_item, subtotal| %>
                 <tr>
                     <td><%= attachment_image_tag Product.find(cart_item.product_id), :image_id, format: 'jpeg', size: "100x100" %><%= Product.find(cart_item.product_id).name %></td>
                     <td><%= Product.find(cart_item.product_id).price %></td>
                     <td><%= cart_item.product_count %></td>
-                    <td><%= @subtotals %></td>
+                    <td><%= subtotal %></td>
                 </tr>
                 <% end %>
             </table>
@@ -52,14 +52,14 @@
             </table>
             
             <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
-              <%= f.hidden_field :customer_id %>
-              <%= f.hidden_field :shipping_fee %>
-              <%= f.hidden_field :pay_amount %>
-              <%= f.hidden_field :pay_method%>
+              <%= f.hidden_field :customer_id, value: current_customer.id %>
+              <%= f.hidden_field :shipping_fee, value: 800 %>
+              <%= f.hidden_field :pay_amount, value: @pay_amount %>
+              <%= f.hidden_field :pay_method %>
               <%= f.hidden_field :delivery_name %>
               <%= f.hidden_field :delivery_postcode %>
               <%= f.hidden_field :delivery_address %>
-              <%= f.hidden_field :status %>
+              <%= f.hidden_field :status, value: "入金待ち" %>
               
               <%= f.submit "注文を確定する", class: "btn btn-success" %>
             <% end %>

@@ -27,18 +27,34 @@ class Public::OrdersController < ApplicationController
             @order.delivery_address = current_customer.address
             @order.delivery_name = current_customer.first_name + current_customer.last_name
         when "2"
-            @order.delivery_postcode = Delivery.find(params[:address]).postcode
-            @order.delivery_address = Delivery.find(params[:address]).address
-            @order.delivery_name = Delivery.find(params[:address]).name
+            @order.delivery_postcode = Delivery.find(params[:order][:address]).postcode
+            @order.delivery_address = Delivery.find(params[:order][:address]).address
+            @order.delivery_name = Delivery.find(params[:order][:address]).name
         when "3"
-            @order.delivery_postcode = params[:delivery_postcode]
-            @order.delivery_address = params[:delivery_address]
-            @order.delivery_name = params[:delivery_name]
+            @order.delivery_postcode = params[:order][:delivery_postcode]
+            @order.delivery_address = params[:order][:delivery_address]
+            @order.delivery_name = params[:order][:delivery_name]
         end
     end
 
     def create
+        @order = current_customer.orders.new(order_params)
+        @cart_items = current_customer.cart_items.all
+        @order_items = OrderItem.new(order_id: @order.id)
         
+        if @order.save
+            @cart_items.each do |cart_item|
+                @order_items.product_id = cart_item.product_id
+                @order_items.product_count = cart_item.product_count
+                @order_items.price = cart_item.product.price
+                @order_items.save
+            end
+            current_customer.cart_items.destroy_all
+            redirect_to controller: :orders, action: :complete
+        
+        else
+            redirect_to controller: :orders, action: :new
+        end
     end
 
     
