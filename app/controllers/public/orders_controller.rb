@@ -4,8 +4,8 @@ class Public::OrdersController < ApplicationController
     
     
     def new
+        @order = current_customer.orders.new
         
-        @order = Order.new(customer_id: current_customer.id)
         @deliveries = Delivery.where(customer_id: current_customer.id)
         
     end
@@ -17,23 +17,23 @@ class Public::OrdersController < ApplicationController
         
         @sum = @subtotals.sum
         @pay_amount = @sum + 800
-        @order = Order.find_by(customer_id: current_customer.id)
+        @order = current_customer.orders.new
         
         @pay_method = params[:pay_method]
         
         case params[:address_sellect]
         when 1
-            @delivery_postcode = current_customer.postcode
-            @delivery_address = current_customer.address
-            @delivery_name = current_customer.first_name + current_customer.last_name
+            @order.delivery_postcode = current_customer.postcode
+            @order.delivery_address = current_customer.address
+            @order.delivery_name = current_customer.first_name + current_customer.last_name
         when 2
-            @delivery_postcode = Delivery.find(params[:address]).postcode
-            @delivery_address = Delivery.find(params[:address]).address
-            @delivery_name = Delivery.find(params[:address]).name
+            @order.delivery_postcode = Delivery.find(params[:address]).postcode
+            @order.delivery_address = Delivery.find(params[:address]).address
+            @order.delivery_name = Delivery.find(params[:address]).name
         when 3
-            @delivery_postcode = params[:delivery_postcode]
-            @delivery_address = params[:delivery_address]
-            @delivery_name = params[:delivery_name]
+            @order.delivery_postcode = params[:delivery_postcode]
+            @order.delivery_address = params[:delivery_address]
+            @order.delivery_name = params[:delivery_name]
         end
     end
 
