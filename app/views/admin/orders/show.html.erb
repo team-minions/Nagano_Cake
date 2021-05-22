@@ -1,5 +1,5 @@
-<div class="container">
-    <h3>注文履歴詳細</h3>
+<div class="container pt-3">
+    <h4 class="col-md-3 offset-1 bg-light text-center mt-2">注文履歴詳細</h4>
     
     <div class="row">
       <table>
@@ -7,9 +7,7 @@
           <tr>
             <th>購入者</th>
             <td>
-              <%= link.to admin_customer_path(@order.customer) %>
-                <%= @order.customer.last_name %><%= @order.customer.fist_name %>
-              <% end %>
+              <%= link.to @order.customer.full_name, admin_customer_path(@order.customer) %>
             </td>
             <td></td>
           </tr>
@@ -29,18 +27,17 @@
           </tr>
           <tr>
             <th>注文ステータス</th>
-            <td>
-              <%= form_with model: @order, url: admin_order_path, local: true do |f| %>
-                <%= f.select :status, Order.statuses.keys.to_a %>
-                <%= f.subimt "更新",　class: "btn btn-success btn-sm" %>
+              <%= form_with model: @order, url: admin_order_path, method: :patch, local: true do |f| %>
+                <!--モデル名.カラム名複数形.keysで設定したenum呼び出す-->
+                <td><%= f.select :status, Order.statuses.keys.to_a %></td>
+                <td><%= f.subimt "更新",　class: "btn btn-success btn-sm" %></td>
               <% end %>
-            </td>
           </tr>
       </tbode>
     </div>
     
   <div class="row">
-      <table class="table col-md-8">
+      <table class="table col-md-6">
         <thead class="thead-light">
           <tr>
             <th>商品名</th>
@@ -58,12 +55,10 @@
             <td><%= order_item.price %></td>
             <td><%= order_item.product_count %></td>
             <td><%= order_item.price * order_item.product_count %></td>
-            <td>
-              <%= form_with model: order_item, url: admin_order_item_path(order_item.order, order_item), local: true do |f| %>
-                <%= f.select :making_status, OrderItem.making_statuses.keys.to_a %>
-                <%= f.subimt "更新",　class: "btn btn-success btn-sm" %>
-              <% end %>
-            </td>
+            <%= form_with model: order_item, url: admin_order_item_path(order_item.order, order_item), local: true do |f| %>
+              <td><%= f.select :making_status, OrderItem.making_statuses.keys.to_a %></td>
+              <td><%= f.subimt "更新",　class: "btn btn-success btn-sm" %></td>
+            <% end %>
           </tr>
           <% end %>
         </tbody>

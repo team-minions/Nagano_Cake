@@ -1,48 +1,45 @@
 class Admin::ProductsController < ApplicationController
-    
-    def index
-        @products = Product.all
-    
-    end
+  before_action :authenticate_admin!
 
-    def show
-        @product = Product.find(params[:id])
-        @price_tax_included = @product.price.to_s*1.08
-          
+  def index
+      @products = Product.all.page(params[:page]).per(8)
+  end
 
-    end
+  def show
+      @product = Product.find(params[:id])
+  end
 
-    def new
-        @product = Product.new
-        @genres = Genre.all
-    end
+  def new
+    @product = Product.new
+    @genres = Genre.all
+  end
 
-    def create
-        @product = Product.new(product_params)
-        if  @product.save
-          redirect_to  admin_products_path(@product), notice: ""
-        else
-          render "admin/products/new"
-        end
+  def create
+    @product = Product.new(product_params)
+    if  @product.save
+      redirect_to  admin_products_path(@product), notice: ""
+    else
+      render "admin/products/new"
     end
-    
-    def edit
-        @product = Product.find(params[:id])
+  end
+
+  def edit
+    @product = Product.find(params[:id])
+    @genres = Genre.all
+  end
+
+  def update
+    @product = Product.find(params[:id])
+    if @product.update(product_params)
+        redirect_to admin_product_path(@product)
+    else
+        render "admin/products/edit"
     end
-    
-    def update
-        @product = Product.find(params[:id])
-        if @product.update(product_params)
-            redirect_to admin_product_path(@product)
-        else
-            render "admin/products/edit"
-        end
-    end
-    
-    
-    private
-    
-    def product_params
-        params.require(:product).permit(:genre_id, :name, :description, :price, :image, :is_active)
-    end
+  end
+
+  private
+
+  def product_params
+    params.require(:product).permit(:genre_id, :name, :description, :price, :image, :is_active)
+  end
 end
