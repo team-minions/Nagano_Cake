@@ -1,8 +1,8 @@
 class Admin::OrdersController < ApplicationController
-  # before_action :authenticate_admin!
-
+  before_action :authenticate_admin!
+  
   def index
-    @orders = Order.page(params[:page]).reverse_order
+    @orders = Order.all.page(params[:page]).per(8)
   end
   
   def show
@@ -12,7 +12,7 @@ class Admin::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     @order.update(order_params)
-    
+    redirect_back(fallback_location: root_path)
   end
   
   private
@@ -20,5 +20,5 @@ class Admin::OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:status)
   end
-  
+
 end

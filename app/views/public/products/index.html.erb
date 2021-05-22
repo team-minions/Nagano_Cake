@@ -1,23 +1,41 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-8 offset-md-1">
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>商品一覧</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <%= stylesheet_link_tag    'products', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'products', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+<div class="product-index py-5 bg-light">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       <h2>商品一覧</h2>
-      <h4>全<%= @products.count %>件</h4>
-      <table class="table table-striped">
-        <tbody>
-          <% @products.each do |product| %>
-            <td>
-              <tr><%= link_to product_path(product.id) do %>
-                <%= attachment_image_tag product, :image, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %>
-              <% end %>
-              </tr>
-              <tr><%= product.name %></tr>
-              <tr>¥<%= product.price  %></tr>
-            </td>
-          <% end %>
-          <%= paginate @products %>
-        </tbody>
-      </table>
+        <h4>全<%= @products.count %>件</h4>
+
+          <div class="col-lg-8">
+            <% @products.each do |product| %>
+            <div class="card-shadow">
+              <div class="image">
+                <%= link_to product_path(product.id) do %>
+                  <%= attachment_image_tag product, :image, format: 'jpeg', fallback: "no_image.jpg", size:'400x200' %>
+                <% end %>
+              </div>
+              <div class="product-name">
+                <%= product.name %>
+              </div>
+              <div class="product-price">
+                ¥<%= product.price  %>
+              </div>
+              </div>
+            <% end %>
+            <%= paginate @products %>
+          </div>
+      </div>
     </div>
   </div>
-</div>
+  </div>
+</html>
