@@ -18,19 +18,19 @@ class Public::OrdersController < ApplicationController
         @sum = @subtotals.sum
         @pay_amount = @sum + 800
         @order = current_customer.orders.new
+        @pay_method = params[:order][:pay_method]
         
-        @pay_method = params[:pay_method]
         
-        case params[:address_sellect]
-        when 1
+        case params[:order][:address_sellect]
+        when "1"
             @order.delivery_postcode = current_customer.postcode
             @order.delivery_address = current_customer.address
             @order.delivery_name = current_customer.first_name + current_customer.last_name
-        when 2
+        when "2"
             @order.delivery_postcode = Delivery.find(params[:address]).postcode
             @order.delivery_address = Delivery.find(params[:address]).address
             @order.delivery_name = Delivery.find(params[:address]).name
-        when 3
+        when "3"
             @order.delivery_postcode = params[:delivery_postcode]
             @order.delivery_address = params[:delivery_address]
             @order.delivery_name = params[:delivery_name]
