@@ -1,3 +1,65 @@
 <div class="container">
-    <div class=""
+    <div class="row">
+        <div class="">注文履歴詳細</div>
+    </div>
+    <div class="row">
+        <div class="">注文情報</div>
+        <div class="">
+            <table class="table table-bordered border-dark">
+                <tr>
+                    <td class="table-light">注文日</td>
+                    <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+                </tr>
+                <tr>
+                    <td class="table-light">配送先</td>
+                    <td>〒<%= @order.delivery_postcode %><br/>
+                    <%= @order.delivery_address %><%= @order.delivery_name %></td>
+                </tr>
+                <tr>
+                    <td class="table-light">支払方法</td>
+                    <td><%= @order.pay_method %></td>
+                </tr>
+                <tr>
+                    <td class="table-light">ステータス</td>
+                    <td><%= @order.status %></td>
+                </tr>
+            </table>
+        </div>
+        <div class="">請求情報</div>
+        <div class="">
+            <table class="table table-bordered border-dark">
+                <tr>
+                    <td class="table table-light">合計金額</td>
+                    <td><%= @sum %></td>
+                </tr>
+                <tr>
+                    <td class="table-light">配送料</td>
+                    <td><%= @order.shipping_fee %></td>
+                </tr>
+                <tr>
+                    <td class="table-light">ご請求額</td>
+                    <td><%= @order.pay_amount %></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="">注文内容</div>
+        <table class="table table-bordered border-dark">
+                <tr class="table table-light">
+                    <td>商品</td>
+                    <td>単価(税込)</td>
+                    <td>個数</td>
+                    <td>小計</td>
+                </tr>
+                <% @order_items.zip(@subtotals) do |order_item, subtotal| %>
+                <tr>
+                    <td><%= order_item.product.name %></td>
+                    <td><%= order_item.price*1.1 %></td>
+                    <td><%= order.product_count %></td>
+                    <td><%= subtotal %></td>
+                </tr>
+                <% end %>
+            </table>
+    </div>
 </div>
