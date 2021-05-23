@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+   gem 'pry-rails'
 end
 
 group :development do
@@ -42,6 +43,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'pry-byebug'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -56,3 +58,6 @@ gem "refile-mini_magick"
 
 gem 'kaminari','~> 1.2.1'
 gem 'enum_help'
+#deviseの日本語化やつ
+gem 'devise-i18n'
+gem 'devise-i18n-views'
