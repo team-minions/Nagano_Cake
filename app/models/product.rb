@@ -11,4 +11,10 @@ class Product < ApplicationRecord
   # numericality〜整数のみというバリデーションらしいので記述
   validates :price, presence: true, numericality: { only_integer: true }
 	
+
+# 税込価格の表記
+  def add_tax_price
+   (self.price * 1.10).round
+  end
+
 end
