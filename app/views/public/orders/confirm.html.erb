@@ -12,9 +12,9 @@
                 <% @cart_items.zip(@subtotals) do |cart_item, subtotal| %>
                 <tr>
                     <td><%= attachment_image_tag Product.find(cart_item.product_id), :image, format: 'jpeg', size: "100x100" %><%= Product.find(cart_item.product_id).name %></td>
-                    <td><%= Product.find(cart_item.product_id).price*1.1 %></td>
-                    <td><%= cart_item.product_count %></td>
-                    <td><%= subtotal %></td>
+                    <td><%= Product.find(cart_item.product_id).price*1.1.to_s(:delimited) %></td>
+                    <td><%= cart_item.product_count.to_s(:delimited) %></td>
+                    <td><%= subtotal.to_s(:delimited) %></td>
                 </tr>
                 <% end %>
             </table>
@@ -31,7 +31,7 @@
                 </tr>
                 <tr>
                     <td>請求金額</td>
-                    <td><%= @pay_amount %></td>
+                    <td><%= @pay_amount.to_s(:delimited) %></td>
                 </tr>
             </table>
         </div>

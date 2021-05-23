@@ -30,7 +30,7 @@
             <table class="table table-bordered border-dark">
                 <tr>
                     <td class="table table-light">合計金額</td>
-                    <td><%= @sum %></td>
+                    <td><%= @sum.to_s(:delimited) %></td>
                 </tr>
                 <tr>
                     <td class="table-light">配送料</td>
@@ -38,7 +38,7 @@
                 </tr>
                 <tr>
                     <td class="table-light">ご請求額</td>
-                    <td><%= @order.pay_amount %></td>
+                    <td><%= @order.pay_amount.to_s(:delimited) %></td>
                 </tr>
             </table>
         </div>
@@ -55,9 +55,9 @@
                 <% @order_items.zip(@subtotals) do |order_item, subtotal| %>
                 <tr>
                     <td><%= order_item.product.name %></td>
-                    <td><%= order_item.price*1.1 %></td>
-                    <td><%= order.product_count %></td>
-                    <td><%= subtotal %></td>
+                    <td><%= order_item.price*1.1.to_s(:delimited) %></td>
+                    <td><%= order.product_count.to_s(:delimited) %></td>
+                    <td><%= subtotal.to_s(:delimited) %></td>
                 </tr>
                 <% end %>
             </table>
