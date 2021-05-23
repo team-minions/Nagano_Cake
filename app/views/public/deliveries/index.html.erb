@@ -1,51 +1,66 @@
-<div class="container pt-3">
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>商品一覧</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <h4 class="col-md-3 offset-1 bg-light text-center mt-2">配送先登録/一覧</h4>
-
-    <div class="delivdery_form">
-    <%= form_with model:@delivery, local:true do |f| %>
-      <div class="form-group">
-        <label for="delivery_postcode">郵便番号</label>
-        <%= f.text_field :postcode, size: 30 %>
-      </div>
-      <div class="form-group">
-        <label for="delivery_address">住所</label>
-        <%= f.text_field :address, size: 50 %>
-      </div>
-      <div class="form-group">
-        <label for="delivery_name">宛名</label>
-        <%= f.text_field :name, size: 30 %>
-        <%= f.submit '新規登録', class: "btn btn- btn btn-success" %>
-      </div>
-    <% end %>
-    </div>
-
-
-    <div class="delivery_information">
-      <table class="table table-bordered border-dark">
-        <thead class="thead-light">
-          <tr>
-            <th>郵便番号</th>
-            <th>住所</th>
-            <th>宛名</th>
-            <th></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @deliveries.each do |delivery| %>
-            <tr>
-              <td><%= delivery.postcode %></td>
-              <td><%= delivery.address %></td>
-              <td><%= delivery.name %></td>
-              <td>
-                <%= link_to '編集する', edit_delivery_path(delivery.id), class: "btn btn-sm btn-success" %>
-                <%= link_to '削除する', delivery_path(delivery.id), method: :delete,data: { confirm: '本当に消去しますか?' }, class: "btn btn-sm btn-danger" %>
-              </td>
-            </tr>
+    <%= stylesheet_link_tag 'deliveries', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+  
+  <body>
+    <div class="container pt-3">
+    
+      <h4 class="col-md-3 offset-1 bg-light text-center mt-2">配送先登録/一覧</h4>
+    
+        <div class="delivdery_form">
+          <%= form_with model:@delivery, local:true do |f| %>
+            <div class="form-group">
+              <label for="delivery_postcode">郵便番号（ハイフンなし）</label>
+              <%= f.text_field :postcode, size: 30 %>
+            </div>
+            <div class="form-group">
+              <label for="delivery_address">住所　　　　　　　　　　</label>
+              <%= f.text_field :address, size: 50 %>
+            </div>
+            <div class="form-group">
+              <label for="delivery_name">宛名　　　　　　　　　　</label>
+              <%= f.text_field :name, size: 30 %>
+              
+              <%= f.submit '新規登録', class: "btn btn-sm btn-success" %>
+            </div>
           <% end %>
-        </tbody>
-      </table>
+        </div>
+    
+    
+        <div class="delivery_information">
+          <table class="table table-bordered border-dark">
+            <thead class="thead-light">
+              <tr>
+                <th>郵便番号</th>
+                <th>住所</th>
+                <th>宛名</th>
+                <th></th>
+              </tr>
+            </thead>
+    
+            <tbody>
+              <% @deliveries.each do |delivery| %>
+                <tr>
+                  <td class="derivery-info"><%= delivery.postcode %></td>
+                  <td class="derivery-info"><%= delivery.address %></td>
+                  <td class="derivery-info"><%= delivery.name %></td>
+                  <td class="text-center">
+                    <%= link_to '編集する', edit_delivery_path(delivery.id), class: "btn btn-sm btn-success" %>
+                    <%= link_to '削除する', delivery_path(delivery.id), method: :delete,data: { confirm: '本当に消去しますか?' }, class: "btn btn-sm btn-danger" %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+  </body>
+</html>
