@@ -12,6 +12,8 @@ class Public::DeliveriesController < ApplicationController
     if @delivery.save
       redirect_to deliveries_path
     else
+      @customer = current_customer
+      @deliveries = Delivery.all
       render :index
     end
   end

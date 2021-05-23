@@ -1,20 +1,16 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>商品一覧</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <%= stylesheet_link_tag 'deliveries', media: 'all', 'data-turbolinks-track': 'reload' %>
-  </head>
-  
   <body>
+    <% if @delivery.errors.any? %>
+      <%= @delivery.errors.count %>error prohibited this obj from being saved:
+      <% @delivery.errors.full_messages.each do |message| %>
+        <%= message %>
+      <% end %>
+    <% end %>
     <div class="container pt-3">
-    
-      <h4 class="col-md-3 offset-1 bg-light text-center mt-2">配送先登録/一覧</h4>
-    
-        <div class="delivdery_form">
+
+      <h4 class="col-md-3 offset-1 bg-light text-center m-4">配送先登録/一覧</h4>
+
+        <div class="mt-5 pb-3">
           <%= form_with model:@delivery, local:true do |f| %>
             <div class="form-group">
               <label for="delivery_postcode">郵便番号（ハイフンなし）</label>
@@ -27,14 +23,14 @@
             <div class="form-group">
               <label for="delivery_name">宛名　　　　　　　　　　</label>
               <%= f.text_field :name, size: 30 %>
-              
-              <%= f.submit '新規登録', class: "btn btn-sm btn-success" %>
+
+              <%= f.submit '新規登録', class: "btn btn-sm btn-success ml-5" %>
             </div>
           <% end %>
         </div>
-    
-    
-        <div class="delivery_information">
+
+
+        <div class="mt-5 mb-5">
           <table class="table table-bordered border-dark">
             <thead class="thead-light">
               <tr>
@@ -44,7 +40,7 @@
                 <th></th>
               </tr>
             </thead>
-    
+
             <tbody>
               <% @deliveries.each do |delivery| %>
                 <tr>
