@@ -55,7 +55,7 @@
                 <% @order_items.zip(@subtotals) do |order_item, subtotal| %>
                 <tr>
                     <td><%= order_item.product.name %></td>
-                    <td><%= order_item.price*1.1.to_s(:delimited) %></td>
+                    <td><%= order_item.price*1.1.to.to_s(:delimited) %></td>
                     <td><%= order.product_count.to_s(:delimited) %></td>
                     <td><%= subtotal.to_s(:delimited) %></td>
                 </tr>
