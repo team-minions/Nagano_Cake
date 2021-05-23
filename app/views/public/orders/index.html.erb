@@ -18,8 +18,8 @@
                     <%= order.delivery_address %><br/>
                     <%= order.delivery_name %>
                 </td>
-                <td><% @order_items.each do |order_item| %>
-                    <%= order_item %>
+                <td><% order.order_items.each do |order_item| %>
+                    <%= order_item.product.name %><br/>
                     <% end %>
                 </td>
                 <td><%= order.pay_amount.to_s(:delimited) %></td>

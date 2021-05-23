@@ -40,14 +40,15 @@ class Public::OrdersController < ApplicationController
     def create
         @order = current_customer.orders.new(order_params)
         @cart_items = current_customer.cart_items.all
-        @order_items = OrderItem.new(order_id: @order.id)
+        
         
         if @order.save
             @cart_items.each do |cart_item|
-                @order_items.product_id = cart_item.product_id
-                @order_items.product_count = cart_item.product_count
-                @order_items.price = cart_item.product.price
-                @order_items.save
+                @order_item = OrderItem.new(order_id: @order.id)
+                @order_item.product_id = cart_item.product_id
+                @order_item.product_count = cart_item.product_count
+                @order_item.price = cart_item.product.price
+                @order_item.save
             end
             current_customer.cart_items.destroy_all
             redirect_to controller: :orders, action: :complete
