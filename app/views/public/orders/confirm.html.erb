@@ -1,8 +1,8 @@
 <div class="container">
     <div class="row">
         <div class="">注文情報確認</div>
-        <div class="col-8">
-            <table>
+        <div class="">
+            <table class="table table-bordered border-dark">
                 <tr>
                     <td>商品名</td>
                     <td>単価(税込)</td>
@@ -11,16 +11,16 @@
                 </tr>
                 <% @cart_items.zip(@subtotals) do |cart_item, subtotal| %>
                 <tr>
-                    <td><%= attachment_image_tag Product.find(cart_item.product_id), :image, format: 'jpeg', size: "100x100" %><%= Product.find(cart_item.product_id).name %></td>
-                    <td><%= Product.find(cart_item.product_id).price*1.1 %></td>
+                    <td><%= attachment_image_tag Product.find(cart_item.product_id), :image, format: 'jpeg', size: "100x100" ,fallback: "no_image2.jpg" %><%= Product.find(cart_item.product_id).name %></td>
+                    <td><%= (cart_item.product.price*1.1).round.to_s(:delimited) %></td>
                     <td><%= cart_item.product_count.to_s(:delimited) %></td>
                     <td><%= subtotal.to_s(:delimited) %></td>
                 </tr>
                 <% end %>
             </table>
         </div>
-        <div class="col-4">
-            <table>
+        <div class="">
+            <table class="table table-bordered border-dark" >
                 <tr>
                     <td>送料</td>
                     <td>800</td>
@@ -55,7 +55,7 @@
               <%= f.hidden_field :customer_id, value: current_customer.id %>
               <%= f.hidden_field :shipping_fee, value: 800 %>
               <%= f.hidden_field :pay_amount, value: @pay_amount %>
-              <%= f.hidden_field :pay_method %>
+              <%= f.hidden_field :pay_method ,value: @pay_method %>
               <%= f.hidden_field :delivery_name %>
               <%= f.hidden_field :delivery_postcode %>
               <%= f.hidden_field :delivery_address %>
