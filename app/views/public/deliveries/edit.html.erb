@@ -1,4 +1,8 @@
-
+<% if flash[:notice] %>
+    <p class="alert alert-success">
+      <%= flash[:notice] %>
+    </p>
+<% end %>
   <body>
     <div class="container">
       <div class="row">

@@ -1,4 +1,8 @@
-
+<% if flash[:notice] %>
+    <p class="alert alert-success">
+      <%= flash[:notice] %>
+    </p>
+<% end %>
   <body>
     <% if @delivery.errors.any? %>
       <%= @delivery.errors.count %>error prohibited this obj from being saved:
