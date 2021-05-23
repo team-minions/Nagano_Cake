@@ -1,3 +1,9 @@
+<% if flash[:danger] %>
+    <p class="alert alert-danger">
+      <%= flash[:danger] %>
+    </p>
+  <% end %>
+
 <div class="container">
   <div class="badge badge-light ml-2 my-3">
     <h4>ログイン</h4>
@@ -9,6 +15,7 @@
   
   <div class="mx-auto mt-4">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= render "public/shared/error_messages", resource: resource %>
       <div class="field text-center">
         <%= f.label :email,"メールアドレス" ,class:"mr-4"%>
         <%= f.email_field :email, autofocus: true, autocomplete: "email",size:40%>

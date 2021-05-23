@@ -58,3 +58,6 @@ gem "refile-mini_magick"
 
 gem 'kaminari','~> 1.2.1'
 gem 'enum_help'
+#deviseの日本語化やつ
+gem 'devise-i18n'
+gem 'devise-i18n-views'
