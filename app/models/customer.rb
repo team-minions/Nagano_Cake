@@ -8,6 +8,11 @@ class Customer < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   has_many :orders, dependent: :destroy
 
+  # add validation
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :furigana_first_name, presence: true
+  validates :furigana_last_name, presence: true
   
   def full_name
     last_name+first_name

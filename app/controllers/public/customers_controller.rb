@@ -1,4 +1,6 @@
 class Public::CustomersController < ApplicationController
+    before_action :authenticate_customer!
+
     def show
     end
 
@@ -7,8 +9,16 @@ class Public::CustomersController < ApplicationController
     end
 
     def update
-        current_customer.update(customer_params)
-        redirect_to customers_path
+        @customer = Customer.find_by(id:current_customer.id)
+        @customer.update_attributes(customer_params)
+        if @customer.save
+            flash[:notice] = "会員情報の更新が完了しました"
+            redirect_to customers_path
+        else
+            @customer.attributes = customer_params
+            flash[:failed] = "会員情報の更新が失敗しました。"
+            render :edit
+        end
     end
 
     def retire

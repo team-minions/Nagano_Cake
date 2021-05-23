@@ -1,3 +1,9 @@
+ <% if flash[:notice] %>
+    <p class="alert alert-success">
+      <%= flash[:notice] %>
+    </p>
+<% end %>
+
 <div class="container pt-3">
   <h4 class="col-md-3 offset-1 bg-light text-center mt-2">注文履歴一覧</h4>
 
