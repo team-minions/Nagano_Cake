@@ -1,3 +1,9 @@
+<% if flash[:notice] %>
+    <p class="alert alert-success">
+      <%= flash[:notice] %>
+    </p>
+<% end %>
+
 <div class="container">
   <div class="badge badge-light my-4">
     <h3><%= @customer.full_name%>さんの会員詳細</h3>

@@ -1,3 +1,8 @@
+<% if flash[:failed] %>
+    <p class="alert alert-danger">
+      <%= flash[:failed] %>
+    </p>
+<% end %>
 
 <div class="container">
   <div class="badge badge-light my-4">
