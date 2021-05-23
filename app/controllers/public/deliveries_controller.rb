@@ -9,8 +9,14 @@ class Public::DeliveriesController < ApplicationController
   def create
     @delivery = Delivery.new(delivery_params)
     @delivery.customer_id = current_customer.id
-    @delivery.save
-    redirect_to deliveries_path
+    if @delivery.save
+      flash[:notice] = "配送先の登録が完了しました"
+      redirect_to deliveries_path
+    else
+      @customer = current_customer
+      @deliveries = Delivery.all
+      render :index
+    end
   end
 
   def edit
@@ -19,9 +25,12 @@ class Public::DeliveriesController < ApplicationController
 
   def update
     @delivery = Delivery.find(params[:id])
-    @delivery.update(delivery_params)
-    flash[:notice] = "You have updated book successfully."
-    redirect_to deliveries_path(@delivery.id)
+    if @delivery.update(delivery_params)
+      flash[:notice] = "配送先の更新が完了しました"
+      redirect_to deliveries_path(@delivery.id)
+    else
+      render :edit
+    end
   end
 
   def destroy
