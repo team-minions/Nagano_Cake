@@ -63,12 +63,14 @@ class Public::OrdersController < ApplicationController
     
     def index
         @orders = Order.where(customer_id: current_customer.id).order(created_at: "DESC")
-        @order_items = OrderItem.where(order_id: @orders.id)
+        @order_items = OrderItem.where(order_id: @orders)
     end
     
     def show
         @order = Order.find(params[:id])
         @order_items = OrderItem.where(order_id: @order)
+        @subtotals = @order_items.map { |order_item| (order_item.product_count * 1.1 * order_item.price ).to_i }
+        @sum = @subtotals.sum
     end
     
     
