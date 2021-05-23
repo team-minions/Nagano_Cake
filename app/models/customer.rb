@@ -21,4 +21,8 @@ class Customer < ApplicationRecord
   def furigana_full_name
     furigana_last_name+furigana_first_name
   end
+  # 退会ユーザーをログインできなくする処理
+  def active_for_authentication?
+    super && (self.is_deleted == false)
+  end
 end
