@@ -26,10 +26,10 @@ Rails.application.routes.draw do
     resources:deliveries,only: [:index, :create, :edit, :update, :destroy]
     resources:orders,only: [:new, :create, :index, :show]
     post "orders/confirm"=> "orders#confirm"
-   
-    get "customers/retire" => "cutomers#retilre"
+    patch "customers/retire" => "customers#retire"
     get "/about" => "homes#about"
-    patch "customers/retire" => "customers#confirm"
+    delete "carts_items/destroy_all" => "carts_items#destroy_all"
+    get "customers/confirm" => "customers#confirm"
   end
 
   namespace :admin do
