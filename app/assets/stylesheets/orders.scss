@@ -1,3 +1,45 @@
 // Place all the styles related to the Orders controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.pay_method_form {
+    padding-left:40px;
+}
+
+.delivery_address_form {
+    padding-left:40px;
+}
+
+.current-customer-address {
+    padding-left:40px;
+}
+
+.address-sellect {
+    padding-left:40px;
+}
+
+.new-address-form {
+    padding-left:40px;
+}
+
+.confirm-btn-wrapper {
+    text-align:center;
+}
+
+.confirm-btn {
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display:inline-block;
+}
+
+/*.table-order-item-confirm {
+    border-width:5px;
+}
+*/
+
+.thnx {
+    margin-top:200px;
+    margin-bottom:200px;
+    text-align:center;
+}
