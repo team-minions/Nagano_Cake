@@ -5,10 +5,12 @@
 <% end %>
   <body>
     <% if @delivery.errors.any? %>
-      <%= @delivery.errors.count %>error prohibited this obj from being saved:
-      <% @delivery.errors.full_messages.each do |message| %>
-        <%= message %>
-      <% end %>
+      <div class="alert alert-danger">
+        <%= @delivery.errors.count %>error prohibited this obj from being saved:<br>
+        <% @delivery.errors.full_messages.each do |message| %>
+          <%= message %><br>
+        <% end %>
+      </div>
     <% end %>
     <div class="container pt-3">
 
