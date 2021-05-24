@@ -10,10 +10,12 @@
           <h4 class="col-md-2 offset-1 bg-light text-center mt-4">配送先編集</h4>
 
           <% if @delivery.errors.any? %>
-            <%= @delivery.errors.count %>error prohibited this obj from being saved:
-            <% @delivery.errors.full_messages.each do |message| %>
-              <%= message %>
-            <% end %>
+            <div class="alert alert-danger">
+              <%= @delivery.errors.count %>error prohibited this obj from being saved:<br>
+              <% @delivery.errors.full_messages.each do |message| %>
+                <%= message %><br>
+              <% end %>
+            </div>
           <% end %>
 
 
