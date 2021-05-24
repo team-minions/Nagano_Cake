@@ -5,12 +5,16 @@ class Public::OrdersController < ApplicationController
 
     def new
         @order = current_customer.orders.new
-
         @deliveries = Delivery.where(customer_id: current_customer.id)
-
+        if CartItem.where(customer_id: current_customer.id).empty?
+            redirect_to cart_items_path
+        end
     end
 
     def confirm
+        #直打ち防止
+        return redirect_to cart_items_path if CartItem.where(customer_id: current_customer.id).empty?
+        
         @cart_items = CartItem.where(customer_id: current_customer.id)
         @subtotals = @cart_items.map { |cart_item| (Product.find(cart_item.product_id).price * 1.1 * cart_item.product_count ).to_i }
 
@@ -40,7 +44,9 @@ class Public::OrdersController < ApplicationController
     def create
         @order = current_customer.orders.new(order_params)
         @cart_items = current_customer.cart_items.all
-
+        if @cart_items.empty?
+            redirect_to cart_items_path
+        end
 
         if @order.save
             @cart_items.each do |cart_item|
