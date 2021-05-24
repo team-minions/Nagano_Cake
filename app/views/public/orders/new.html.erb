@@ -3,12 +3,12 @@
         <div class="">
             <%= form_with model: @order, url: orders_confirm_path, method: :post, local: true  do |f| %>
             <div class="">注文情報入力</div>
-            
+
             <div class="pay_method">
                 <div class="">支払方法</div>
                 <%= f.radio_button :pay_method, :"クレジットカード" , checked: true %>
-                <%= f.label :pay_method_credit_card, "クレジットカード", %>
-                
+                <%= f.label :pay_method_credit_card, "クレジットカード" %>
+
                 <%= f.radio_button :pay_method, :"銀行振込" %>
                 <%= f.label :pay_method_cash, "銀行振込" %>
             </div>
@@ -16,7 +16,7 @@
             <div class="deliveries">
                 <div class="">お届け先</div>
                 <table>
-                  <tr>    
+                  <tr>
                     <%= f.radio_button "address_sellect", "1" , checked: true %>
                     <%= f.label :address_sellect, "ご自身の住所"  %>
                     <%= current_customer.address %>
@@ -46,16 +46,16 @@
                   </tr>
                 </table>
             </div>
-            
-            
-            
+
+
+
             <%= f.submit "確認画面へ進む" %>
             <% end %>
-            
-            
-            
-            
-            
+
+
+
+
+
         </div>
     </div>
 </div>

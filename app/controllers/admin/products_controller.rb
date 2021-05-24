@@ -1,6 +1,6 @@
 class Admin::ProductsController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def index
       @products = Product.all.page(params[:page]).per(8)
   end
@@ -8,7 +8,7 @@ class Admin::ProductsController < ApplicationController
   def show
       @product = Product.find(params[:id])
   end
-  
+
   def new
     @product = Product.new
     @genres = Genre.all
@@ -16,8 +16,9 @@ class Admin::ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    @genres = Genre.all
     if  @product.save
-      redirect_to  admin_products_path(@product), notice: ""
+      redirect_to  admin_products_path(@product)
     else
       render "admin/products/new"
     end
@@ -30,6 +31,7 @@ class Admin::ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
+    @genres = Genre.all
     if @product.update(product_params)
         redirect_to admin_product_path(@product)
     else
