@@ -16,5 +16,8 @@ class Product < ApplicationRecord
   def add_tax_price
    (self.price * 1.10).round
   end
-
+ # 検索機能
+  def self.search(search, word)
+      @product = Product.where("name LIKE?","%#{word}%")
+  end
 end
