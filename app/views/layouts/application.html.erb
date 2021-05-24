@@ -3,7 +3,6 @@
   <head>
     <title>NaganoCake</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -58,9 +57,11 @@
         <input class="form-control mr-sm-2" type="search" placeholder="会員名or商品名" aria-label="Search">
         <button class="btn btn-outline-info my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
       </form>
+      <!--ためし-->
+      <%= render 'layouts/search' %>
     <% end %>
 <!--mainとfooterの余白少し-->
-    <main class="mb-5">
+    <main class="mb-5 bg-li">
     <%= yield %>
     </main>
 

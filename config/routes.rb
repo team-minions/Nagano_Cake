@@ -37,7 +37,9 @@ Rails.application.routes.draw do
   namespace :admin do
    # adminログイン後遷移ページ
    root :to => "orders#index"
-   resources:customers,only: [:index, :show, :edit, :update]
+   resources :customers, only: [:index, :edit, :update, :show] do
+    get :search, on: :collection
+   end
    resources:products,only: [:index, :show, :new, :create, :edit, :update]
    resources:orders,only: [:index, :show, :update]
    resources:genres,only: [:index, :edit, :create, :update]
