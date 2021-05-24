@@ -13,7 +13,7 @@ class Public::CustomersController < ApplicationController
         @customer.update_attributes(customer_params)
         if @customer.save
             flash[:notice] = "会員情報の更新が完了しました"
-            redirect_to admin_customers_path
+            redirect_to customers_path
         else
             @customer.attributes = customer_params
             flash[:failed] = "会員情報の更新が失敗しました。"

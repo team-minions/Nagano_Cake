@@ -4,6 +4,14 @@
   <div class="row pt-4">
     <%= form_with model:[:admin, @product], local: true do |f| %>
     <table class="table mx-auto table-borderless">
+      <% if @product.errors.any? %>
+          <span class="text-danger"><%= @product.errors.count %>件のエラーが発生しました</span>
+          <ul class="text-danger">
+          <% @product.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+      <% end %>
       <tbody>
         <tr>
            <td>商品画像</td>

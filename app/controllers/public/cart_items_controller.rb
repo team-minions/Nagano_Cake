@@ -26,18 +26,11 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy_all
-    # customer = Customer.find(current_customer.id)
-    # if customer.cart_items.destroy_all
-    #   flash[:notice] = "カート内の商品を全て削除しました。"
-    #   redirect_to cart_item_path
-    # else
-    #   render action: :index
-    # end
-  current_customer.cart_items.destroy_all
-  @cart_item = current_customer.cart_items
-  @cart_item.destroy_all
-  flash[:alert] = "カートの商品を全て削除しました"
-  redirect_to cart_items_path
+    current_customer.cart_items.destroy_all
+    @cart_item = current_customer.cart_items
+    @cart_item.destroy_all
+    flash[:alert] = "カートの商品を全て削除しました"
+    redirect_to cart_items_path
   end
 
     private

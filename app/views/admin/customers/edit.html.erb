@@ -5,10 +5,11 @@
 <% end %>
 
 <div class="container">
+  
   <div class="badge badge-light my-4">
     <h3><%= @customer.full_name %>さんの会員情報編集</h3>
   </div>
-
+  
   <%= form_with(model: @customer,url: admin_customer_path,local: true)do |f|%>
   <div class="field row mb-2">
       <div class="col-2">
