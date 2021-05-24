@@ -13,5 +13,7 @@ module NaganoCake
     # -- all .rb files in that directory are automatically loaded.
     # これも追加
     config.i18n.default_locale = :ja
+    # 日本時間に
+    config.time_zone = 'Tokyo'
   end
 end

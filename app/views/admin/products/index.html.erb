@@ -3,7 +3,7 @@
     <h3 class="col-md-3 offset-1 bg-light text-center mt-2">商品一覧</h3>
   </div>
   <div class="row offset-10">
-  <%= link_to  new_admin_product_path, class: 'btn btn-default' do %>
+  <%= link_to  new_admin_product_path, class: 'btn btn-default rounded-circle' do %>
     <i class="far fa-edit"></i>
   <% end %>
   </div>
@@ -24,7 +24,7 @@
           <tr>
               <td><%= product.id %></td>
               <td><%= link_to product.name, admin_product_path(product.id) %></td>
-              <td><%= product.price %></td>
+              <td><%= product.price.to_s(:delimited) %></td>
               <td><%= product.genre.name %></td>
               <% if product.is_active == false %>
                 <td class="text-success">販売中</td>
