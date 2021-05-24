@@ -1,5 +1,5 @@
 <div class="mb-0">
-  <%= form_tag(search_path, method: :get) do %>
+  <%= form_tag(search_admin_customers_path, method: :get) do %>
   <%= select_tag 'range' ,options_for_select([['-選択してください-', ''], ['会員', '1'], ['商品', '2']]) %>
 
 　<%= text_field_tag (:word)  %>

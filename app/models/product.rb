@@ -21,8 +21,5 @@ class Product < ApplicationRecord
       @product = Product.where("name LIKE?","%#{word}%")
   end
   
-  def self.searchgenre(word)
-    @product = Product.where("name LIKE?","%#{word}%")
-  end
   
 end

@@ -42,5 +42,6 @@
 </div>
 
 
-
-<%= render 'layouts/genresearch' %>
+<% unless admin_signed_in? %>
+  <%= render 'layouts/genresearch' %>
+<% end %>
