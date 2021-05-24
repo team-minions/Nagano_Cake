@@ -29,7 +29,7 @@ class Public::OrdersController < ApplicationController
         when "1"
             @order.delivery_postcode = current_customer.postcode
             @order.delivery_address = current_customer.address
-            @order.delivery_name = current_customer.first_name + current_customer.last_name
+            @order.delivery_name = current_customer.last_name + current_customer.first_name
         when "2"
             @order.delivery_postcode = Delivery.find(params[:order][:address]).postcode
             @order.delivery_address = Delivery.find(params[:order][:address]).address
