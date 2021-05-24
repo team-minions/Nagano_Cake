@@ -18,7 +18,7 @@ class Admin::ProductsController < ApplicationController
     @product = Product.new(product_params)
     @genres = Genre.all
     if  @product.save
-      redirect_to  admin_products_path(@product)
+      redirect_to  admin_product_path(@product)
     else
       render "admin/products/new"
     end
