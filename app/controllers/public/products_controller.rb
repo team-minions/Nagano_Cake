@@ -7,5 +7,6 @@ class Public::ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @cart_item = CartItem.new(product_id: @product.id)
     @genres = Genre.all
+    @tax = 1.1
   end
 end

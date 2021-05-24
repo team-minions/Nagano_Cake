@@ -2,11 +2,11 @@
 
   <div class="container">
     <div class="row">
-      <h4 class="col-md-3 offset-1 bg-light text-center mt-2">ショッピングカート</h4>
-      <div class="col-md-7 text-right">
+      <h4 class="col-md-3 offset-1 bg-light text-center mt-4">ショッピングカート</h4>
+      <div class="col-md-7 text-right mt-4">
         <%= link_to "カートを空にする",  cart_items_destroy_all_path, method: :delete, class: "btn btn-sm btn-danger" %>
       </div>
-        <table class="table table-bordered border-dark">
+        <table class="table table-bordered border-dark mt-4">
           <thead class="thead-light">
             <tr>
               <th>商品名</th>
@@ -39,7 +39,7 @@
         </div>
         <div class="row">
           <div class="col-md-9">
-            <%= link_to '買い物を続ける', products_path, class: "btn btn-sm btn-primary" %>
+            <%= link_to '買い物を続ける', root_path, class: "btn btn-sm btn-primary" %>
           </div>
 
           <div class="col-md-3 col-md-offset-6">
