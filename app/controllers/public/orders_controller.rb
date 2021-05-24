@@ -12,6 +12,9 @@ class Public::OrdersController < ApplicationController
     end
 
     def confirm
+        #直打ち防止
+        return redirect_to cart_items_path if CartItem.where(customer_id: current_customer.id).empty?
+        
         @cart_items = CartItem.where(customer_id: current_customer.id)
         @subtotals = @cart_items.map { |cart_item| (Product.find(cart_item.product_id).price * 1.1 * cart_item.product_count ).to_i }
 

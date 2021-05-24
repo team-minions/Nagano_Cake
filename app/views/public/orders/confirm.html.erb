@@ -47,7 +47,11 @@
                 </tr>
                 <tr>
                     <td class="font-weight-bold">お届け先</td>
-                    <td>〒<%= @order.delivery_postcode %><%= @order.delivery_address %><%= @order.delivery_name %> </td>
+                    <td>〒<%= @order.delivery_postcode %>&nbsp;&nbsp;<%= @order.delivery_address %> </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><%= @order.delivery_name %></td>
                 </tr>
             </table>
 
