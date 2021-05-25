@@ -33,11 +33,13 @@
             </tr>
             <tr>
               <th>注文ステータス</th>
+                <td>
                 <%= form_with model: @order, url: admin_order_path, method: :patch, local: true do |f| %>
                   <!--モデル名.カラム名複数形.keysで設定したenum呼び出す-->
-                  <td><%= f.select :status, Order.statuses.keys.to_a %></td>
-                  <td><%= f.submit "更新", class: "btn btn-success btn-sm" %></td>
+                  <%= f.select :status, Order.statuses.keys.to_a %>
+                  <%= f.submit "更新", class: "btn btn-success btn-sm" %>
                 <% end %>
+                </td>
             </tr>
           </tbody>
         </table>
@@ -64,10 +66,12 @@
               <td><%= order_item.price.to_s(:delimited) %></td>
               <td><%= order_item.product_count %></td>
               <td><%= (order_item.price * order_item.product_count).to_s(:delimited) %></td>
+              <td>
               <%= form_with model: order_item, url: admin_order_item_path(order_item), method: :patch, local: true do |f| %>
-                <td><%= f.select :making_status, OrderItem.making_statuses.keys.to_a %></td>
-                <td><%= f.submit "更新", class: "btn btn-success btn-sm" %></td>
+                <%= f.select :making_status, OrderItem.making_statuses.keys.to_a %>
+                <%= f.submit "更新", class: "btn btn-success btn-sm" %>
               <% end %>
+              </td>
             </tr>
           </tbody>
           <% end %>
