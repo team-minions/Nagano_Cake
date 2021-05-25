@@ -13,7 +13,14 @@
     <header>
       <nav class="navbar navbar-expand-lg bg-warning">
         <div class="container">
-          <%= link_to root_path do %>
+          <!-- 管理者側と顧客側で遷移先を変える　-->
+          <% if admin_signed_in? %>
+            <% logo_click = admin_orders_path %>
+          <% else %>
+            <% logo_click = root_path %>
+          <% end %>
+          <!-- ここまでが条件分岐 -->
+          <%= link_to logo_click do %>
             <%= image_tag "logo_transparent.png", size: "110x100", class: "navbar-brand" %>
           <% end %>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
