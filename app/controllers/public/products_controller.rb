@@ -9,4 +9,13 @@ class Public::ProductsController < ApplicationController
     @genres = Genre.all
     @tax = 1.1
   end
+  
+  def search
+    @genres = Genre.searchgenre(params[:word])
+    @genres.each do |genre|
+      @products = Product.where(genre_id: genre.id).page(params[:page]).reverse_order
+    end
+    @word = params[:word]
+    render "index"
+  end
 end

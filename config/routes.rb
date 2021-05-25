@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     post "orders/confirm"=> "orders#confirm"
     get "orders/confirm" => "orders#confirm"
     resources:products,only: [:index, :show]
+    get "search" => "products#search"
     delete "cart_items/destroy_all" => "cart_items#destroy_all"
     resources:cart_items,only: [:index, :create,:update, :destroy]
     resources:deliveries,only: [:index, :create, :edit, :update, :destroy]
@@ -32,6 +33,7 @@ Rails.application.routes.draw do
     get "/about" => "homes#about"
     delete "carts_items/destroy_all" => "carts_items#destroy_all"
     get "customers/confirm" => "customers#confirm"
+    
   end
 
   namespace :admin do
