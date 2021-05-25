@@ -31,11 +31,11 @@
                 <td>
                   <%= form_with model: cart_item do |f| %>
                     <%= f.select :product_count, [*1..100] %>
-                    <%= f.submit "変更する", class: "btn btn-sm btn-success"%>
+                    <%= f.submit "変更する", class: "btn btn-sm btn-success ml-2"%>
                   <% end %>
                 </td>
                 <td><%= (((cart_item.product.price * @tax) * cart_item.product_count).to_i).to_s(:delimited) %></td>
-                <td><%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, class:"btn btn-sm btn-danger" %></td>
+                <td class="text-center"><%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, class:"btn btn-sm btn-danger" %></td>
               </tr>
             <% end %>
           </tbody>
