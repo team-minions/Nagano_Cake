@@ -16,10 +16,8 @@
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
-
-@import "bootstrap";
-@import 'font-awesome-sprockets';
-@import 'font-awesome';
+// メイン画面のロゴ
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap');
 
 // 更新失敗時のレイアウト崩れを防ぐ
 .field_with_errors {
@@ -60,3 +58,89 @@
 //   vertical-align:bottom;
 
 // }
+// .swiper-container {
+  
+//   h1 {
+//     position: absolute;
+//     margin: 0;
+//     padding: 0;
+//     color: white;
+//     font-weight: bold;
+//     font-size: 6vw;
+//     font-family: Quicksand, sans-serif;
+//     text-shadow: black 1px 1px 0px, black -1px 1px 0px,
+//                      black 1px -1px 0px, black -1px -1px 0px;
+//     top: 50%;
+//     left: 50%;
+//     -ms-transform: translate(-50%,-50%);
+//     -webkit-transform: translate(-50%,-50%);
+//     transform: translate(-50%,-50%);
+//     z-index: 2; 
+//   }
+  
+//   img {
+//     width: 100%;
+//   }
+// }
+.swiper-container {
+  width: auto;
+  height: 400px;
+  margin:  0 auto; 
+  // padding-top: 50px;
+  // padding-bottom: 50px;
+  
+}
+
+.swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        background-position: center;
+        background-size: cover;
+        
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+ }
+ 
+ .swiper-pagination{
+   text-align:center;
+ }
+ .main-title{
+   padding-top: 50px;
+   border-top: 1px solid rgba(60,60,60,0.1);
+   display: inline-block; 
+   font-family: 'M PLUS Rounded 1c', sans-serif;
+   span {
+     font-size:30px;
+     margin-bottom:2px;
+   }
+ }
+ 
+ .main-image{
+   box-shadow: 5px 10px 40px rgba(0,0,0,0.25);
+ }
+ 
+ .intro-image-wrap{
+   transition-duration: 0.5s;
+ }
+ 
+ .intro-image{
+  cursor: pointer;
+ }
+ 
+ .intro-image:hover{
+  box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+  transform: translateY(-10px);
+  transition-duration: 0.5s;
+ }

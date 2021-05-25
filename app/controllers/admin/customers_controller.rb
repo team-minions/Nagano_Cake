@@ -8,7 +8,7 @@ class Admin::CustomersController < ApplicationController
 		if @range == '1'
 			@customers = Customer.search(@search,@word)
 		elsif @range == '2'
-			@items = Item.search(@search,@word)
+			@products = Product.search(@search,@word)
          elsif @range == '3'
     	  @genres = Genre.search(@search,@word)
     	end
