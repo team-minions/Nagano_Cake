@@ -39,7 +39,7 @@
     </div>
 
     <div class="row">
-        <div class="">
+        <div class="col-md-12">
             <table class="h5">
                 <tr>
                     <td class="font-weight-bold", width="150">支払方法</td>
@@ -67,6 +67,21 @@
 
               <%= f.submit "注文を確定する", class: "btn btn-success"%>
             <% end %>
+            <div class="order_create_wrapper">
+                <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
+                  <%= f.hidden_field :customer_id, value: current_customer.id %>
+                  <%= f.hidden_field :shipping_fee, value: 800 %>
+                  <%= f.hidden_field :pay_amount, value: @pay_amount %>
+                  <%= f.hidden_field :pay_method ,value: @pay_method %>
+                  <%= f.hidden_field :delivery_name %>
+                  <%= f.hidden_field :delivery_postcode %>
+                  <%= f.hidden_field :delivery_address %>
+                  <%= f.hidden_field :status, value: "入金確認" %>
+                  
+                  <%= f.submit "注文を確定する", class: "btn btn-success w-25"%>
+                  
+                <% end %>
+            </div>
 
         </div>
     </div>
