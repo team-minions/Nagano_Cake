@@ -21,3 +21,10 @@
 .search_form_genre {
     margin-left: 3px;
 }
+
+.product_image:hover {
+    box-shadow: 5px 5px #CCCCCC;
+    transition: all 0.3s;
+    position:relative;
+    top: -3px;
+}
