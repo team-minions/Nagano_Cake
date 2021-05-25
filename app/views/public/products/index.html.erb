@@ -4,6 +4,9 @@
     <div class="product-index py-5 bg-light">
       <div class="container">
         <h2>商品一覧</h2>
+        <% unless @word.nil? %>
+          <h4>ジャンル検索：<%= @word %></h4>
+        <% end %>
         <h4>全<%= @products.total_count %>件</h4>
           <div class="row">
             <% @products.each do |product| %>
@@ -26,3 +29,6 @@
       </div>
     </div>
   </body>
+  
+  
+  <%= render 'layouts/genresearch' %>
