@@ -19,7 +19,7 @@
                 <% end %>
             </table>
         </div>
-        
+
         <div class="col-md-4">
             <table class="table table-bordered border-dark" >
                 <tr>
@@ -55,18 +55,6 @@
                 </tr>
             </table>
 
-            <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
-              <%= f.hidden_field :customer_id, value: current_customer.id %>
-              <%= f.hidden_field :shipping_fee, value: 800 %>
-              <%= f.hidden_field :pay_amount, value: @pay_amount %>
-              <%= f.hidden_field :pay_method ,value: @pay_method %>
-              <%= f.hidden_field :delivery_name %>
-              <%= f.hidden_field :delivery_postcode %>
-              <%= f.hidden_field :delivery_address %>
-              <%= f.hidden_field :status, value: "入金待ち" %>
-
-              <%= f.submit "注文を確定する", class: "btn btn-success"%>
-            <% end %>
             <div class="order_create_wrapper">
                 <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
                   <%= f.hidden_field :customer_id, value: current_customer.id %>
@@ -76,10 +64,10 @@
                   <%= f.hidden_field :delivery_name %>
                   <%= f.hidden_field :delivery_postcode %>
                   <%= f.hidden_field :delivery_address %>
-                  <%= f.hidden_field :status, value: "入金確認" %>
-                  
+                  <%= f.hidden_field :status, value: "入金待ち" %>
+
                   <%= f.submit "注文を確定する", class: "btn btn-success w-25"%>
-                  
+
                 <% end %>
             </div>
 
