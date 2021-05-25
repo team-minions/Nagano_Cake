@@ -55,11 +55,7 @@
         <div class="col-md-2 mt-3 mx-5">
             <p class="intro-image-wrap">
                 <%= link_to product_path(product.id) do %>
-<<<<<<< HEAD
                     <%= attachment_image_tag product, :image,  format: 'jpeg', fallback: 'noimage.jpg', size: '200x200', class: "intro-image rounded" %>
-=======
-                    <%= attachment_image_tag product, :image, :fill, 100, 100, format: 'jpeg', fallback: 'noimage.jpg', size: '200x200', class: "rounded product_image" %>
->>>>>>> origin/develop
                 <% end %>
             </p>
             <p><%= product.name %></p>
@@ -71,7 +67,6 @@
   <%= link_to "全ての商品を見る＞", products_path %>
 </div>
 
-<<<<<<< HEAD
 <script>
   const swiper =  new Swiper('.swiper-container', {
   // Optional parameters
@@ -109,9 +104,8 @@
 })
 
 </script>
-=======
+
 
 <% unless admin_signed_in? %>
   <%= render 'layouts/genresearch' %>
 <% end %>
->>>>>>> origin/develop
