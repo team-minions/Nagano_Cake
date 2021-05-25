@@ -3,7 +3,7 @@
 
   <div class="row pt-4">
     <div class="col-3 offset-1">
-      <%= attachment_image_tag(@product, :image, :fill, 300, 300, fallback: "no_image2.jpg", size:'200x200', class:"img-fluid") %>
+      <%= attachment_image_tag(@product, :image, fallback: "no_image2.jpg", size:'200x200', class:"img-fluid") %>
     </div>
     <div class="col-5">
       <table class="table table-borderless">
