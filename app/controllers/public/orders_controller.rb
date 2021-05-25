@@ -14,7 +14,6 @@ class Public::OrdersController < ApplicationController
     def confirm
         #直打ち防止
         return redirect_to cart_items_path if CartItem.where(customer_id: current_customer.id).empty?
-        
         @cart_items = CartItem.where(customer_id: current_customer.id)
         @subtotals = @cart_items.map { |cart_item| (Product.find(cart_item.product_id).price * 1.1 * cart_item.product_count ).to_i }
 
@@ -49,21 +48,21 @@ class Public::OrdersController < ApplicationController
         end
 
         if @order.save
+            @order.status = 0
             @cart_items.each do |cart_item|
                 @order_item = OrderItem.new(order_id: @order.id)
                 @order_item.product_id = cart_item.product_id
                 @order_item.product_count = cart_item.product_count
                 @order_item.price = cart_item.product.price
+                @order_item.making_status = 0
                 @order_item.save
             end
             current_customer.cart_items.destroy_all
             redirect_to controller: :orders, action: :complete
-
         else
             redirect_to controller: :orders, action: :new
         end
     end
-
 
     def complete
     end
@@ -79,12 +78,6 @@ class Public::OrdersController < ApplicationController
         @subtotals = @order_items.map { |order_item| (order_item.product_count * 1.1 * order_item.price ).to_i }
         @sum = @subtotals.sum
     end
-
-
-
-
-
-
 
 
     private
