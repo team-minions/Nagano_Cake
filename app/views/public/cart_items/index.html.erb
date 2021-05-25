@@ -24,7 +24,7 @@
           <tbody>
             <% @cart_items.each do |cart_item| %>
               <tr>
-                <td><%= attachment_image_tag Product.find(cart_item.product_id), :image, format: 'jpeg', size: "100x70" %>
+                <td><%= attachment_image_tag Product.find(cart_item.product_id), :image, format: 'jpeg', fallback: "no_image2.jpg", size: "100x70" %>
                     <%= cart_item.product.name %>
                 </td>
                 <td><%= ((cart_item.product.price * @tax).to_i).to_s(:delimited) %></td>
