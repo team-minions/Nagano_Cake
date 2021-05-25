@@ -16,6 +16,8 @@
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+// メイン画面のロゴ
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap');
 
 // 更新失敗時のレイアウト崩れを防ぐ
 .field_with_errors {
@@ -65,18 +67,19 @@
 //   }
 // }
 .swiper-container {
-  width: 100%;
-  height: 300px;
-  margin:  20 auto; 
-  padding-top: 50px;
-  padding-bottom: 50px;
+  width: auto;
+  height: 400px;
+  margin:  0 auto; 
+  // padding-top: 50px;
+  // padding-bottom: 50px;
+  
 }
 
 .swiper-slide {
         text-align: center;
         font-size: 18px;
         background: #fff;
-background-position: center;
+        background-position: center;
         background-size: cover;
         
         /* Center slide text vertically */
@@ -92,7 +95,36 @@ background-position: center;
         -ms-flex-align: center;
         -webkit-align-items: center;
         align-items: center;
-        background-color:teal;
-        
-        
+ }
+ 
+ .swiper-pagination{
+   text-align:center;
+ }
+ .main-title{
+   padding-top: 50px;
+   border-top: 1px solid rgba(60,60,60,0.1);
+   display: inline-block; 
+   font-family: 'M PLUS Rounded 1c', sans-serif;
+   span {
+     font-size:30px;
+     margin-bottom:2px;
+   }
+ }
+ 
+ .main-image{
+   box-shadow: 5px 10px 40px rgba(0,0,0,0.25);
+ }
+ 
+ .intro-image-wrap{
+   transition-duration: 0.5s;
+ }
+ 
+ .intro-image{
+  cursor: pointer;
+ }
+ 
+ .intro-image:hover{
+  box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+  transform: translateY(-10px);
+  transition-duration: 0.5s;
  }
