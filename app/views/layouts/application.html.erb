@@ -3,6 +3,8 @@
   <head>
     <title>NaganoCake</title>
     <%= csrf_meta_tags %>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -53,10 +55,6 @@
 
       <!--検索窓(検索機能は後で)-->
     <% if admin_signed_in? %>
-      <form class="form-inline m-2 float-right">
-        <input class="form-control mr-sm-2" type="search" placeholder="会員名or商品名" aria-label="Search">
-        <button class="btn btn-outline-info my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-      </form>
       <!--ためし-->
       <%= render 'layouts/search' %>
     <% end %>
@@ -70,5 +68,6 @@
         <p class="text-center mx-auto text-primary p-3">NaganoCake</p>
       </div>
     </footer>
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
   </body>
 </html>

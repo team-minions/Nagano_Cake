@@ -17,10 +17,6 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
-@import "bootstrap";
-@import 'font-awesome-sprockets';
-@import 'font-awesome';
-
 // 更新失敗時のレイアウト崩れを防ぐ
 .field_with_errors {
   display: contents;
@@ -44,3 +40,59 @@
 //   vertical-align:bottom;
    
 // }
+// .swiper-container {
+  
+//   h1 {
+//     position: absolute;
+//     margin: 0;
+//     padding: 0;
+//     color: white;
+//     font-weight: bold;
+//     font-size: 6vw;
+//     font-family: Quicksand, sans-serif;
+//     text-shadow: black 1px 1px 0px, black -1px 1px 0px,
+//                      black 1px -1px 0px, black -1px -1px 0px;
+//     top: 50%;
+//     left: 50%;
+//     -ms-transform: translate(-50%,-50%);
+//     -webkit-transform: translate(-50%,-50%);
+//     transform: translate(-50%,-50%);
+//     z-index: 2; 
+//   }
+  
+//   img {
+//     width: 100%;
+//   }
+// }
+.swiper-container {
+  width: 100%;
+  height: 300px;
+  margin:  20 auto; 
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+background-position: center;
+        background-size: cover;
+        
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        background-color:teal;
+        
+        
+ }

@@ -1,50 +1,80 @@
 <div class="container">
   <div class="row col-10 mx-auto">
-    <table class="table table-hover table-inverse">
+    <table class="table table-hover table-inverse mt-5">
       <thead>
         <tr>
           <th class="kensaku">検索結果</th>
         </tr>
       </thead>
     <% if @range == '1' %>
+    <table class="table col-md-10 mx-auto table-hover">
+      <thead>
+        <tr>
+            <th>会員ID</th>
+            <th>氏名</th>
+            <th>メールアドレス</th>
+            <th>ステータス</th>
+        </tr>
+      </thead>
       <tbody>
-        <% @customers.each do |customer| %>
-          <tr>
-            <td class="text-right">
-              <%= link_to admin_customers_path(customer.id) do %>
-              <%= customer.last_name %>
-              <% end %>
-            </td>
-            <td>
-              <%= customer.first_name %>
-            </td>
-          </tr>
+        <% @customers.each do |customer|%>
+        　　<tr>
+        　　    <td><%= customer.id %></td>
+        　　    <td><%=link_to customer.full_name,admin_customer_path(customer.id)%></td>
+        　　    <td><%= customer.email%></td>
+              <% if customer.is_deleted?%>
+        　　    <td class="text-danger">退会</td>
+        　　    <%else%>
+        　　    <td class="text-success">有効</td>
+        　　    <%end%>
+        　　</tr>
         <% end %>
-      </tbody>
+      <tbody>
+        </table>
       <% elsif @range == '2' %>
-      <tbody>
-        <% @items.each do |item| %>
+      <table class="table col-md-10 mx-auto table-hover">
+        <thead>
           <tr>
-            <td class="text-center">
-              <%= link_to admin_prodcuts_path(product.id) do %>
-              <%= item.name %>
+              <th>商品ID</th>
+              <th>商品名</th>
+              <th>税抜価格</th>
+              <th>ジャンル</th>
+              <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @products.each do |product| %>
+          <tr>
+              <td><%= product.id %></td>
+              <td><%= link_to product.name, admin_product_path(product.id) %></td>
+              <td><%= product.price.to_s(:delimited) %></td>
+              <td><%= product.genre.name %></td>
+              <% if product.is_active == false %>
+                <td class="text-success">販売中</td>
+              <% elsif product.is_active == true %>
+                <td class="text-secondary">販売停止中</td>
               <% end %>
-            </td>
           </tr>
           <% end %>
-      </tbody>
+       <tbody>
+      </table>
       <% else @range == '3' %>
-      <tbody>
-        <% @genres.each do |genre| %>
+      <table class="table col-md-10 mx-auto table-hover">
+        <thead>
           <tr>
-            <td class="text-center">
-              <%= link_to edit_admin_genre_path(genre.id) do %>
-              <%= genre.name %>
-              <% end %>
-            </td>
+            <th class="text-right">ジャンル</th>
+            <th></th>
           </tr>
-          <% end %>
-      </tbody>
+        </thead>
+        <tbody>
+        <% @genres.each do |genre| %>
+        <tr class="border-bottom">
+          <th class="align-middle"><%= genre.name %></th>
+          <th class="text-right"><%= link_to "編集する", edit_admin_genre_path(genre.id), class:"btn btn-success btn-sm" %></th>
+        </tr>
+        <% end %>
+        </tbody>
+      </table>
     <% end %>
     </table>
   </div>
