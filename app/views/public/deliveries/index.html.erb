@@ -1,0 +1,66 @@
+<% if flash[:notice] %>
+    <p class="alert alert-success">
+      <%= flash[:notice] %>
+    </p>
+<% end %>
+  <body>
+    <% if @delivery.errors.any? %>
+      <div class="alert alert-danger">
+        <%= @delivery.errors.count %>error prohibited this obj from being saved:<br>
+        <% @delivery.errors.full_messages.each do |message| %>
+          <%= message %><br>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="container pt-3">
+
+      <h4 class="col-md-3 offset-1 bg-light text-center m-4">配送先登録/一覧</h4>
+
+        <div class="mt-5 pb-3">
+          <%= form_with model:@delivery, local:true do |f| %>
+            <div class="form-group">
+              <label for="delivery_postcode">郵便番号（ハイフンなし）</label>
+              <%= f.text_field :postcode, size: 30 %>
+            </div>
+            <div class="form-group">
+              <label for="delivery_address">住所　　　　　　　　　　</label>
+              <%= f.text_field :address, size: 50 %>
+            </div>
+            <div class="form-group">
+              <label for="delivery_name">宛名　　　　　　　　　　</label>
+              <%= f.text_field :name, size: 30 %>
+
+              <%= f.submit '新規登録', class: "btn btn-sm btn-success ml-5" %>
+            </div>
+          <% end %>
+        </div>
+
+
+        <div class="mt-5 mb-5">
+          <table class="table table-bordered border-dark">
+            <thead class="thead-light">
+              <tr>
+                <th>郵便番号</th>
+                <th>住所</th>
+                <th>宛名</th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @deliveries.each do |delivery| %>
+                <tr>
+                  <td class="derivery-info"><%= delivery.postcode %></td>
+                  <td class="derivery-info"><%= delivery.address %></td>
+                  <td class="derivery-info"><%= delivery.name %></td>
+                  <td class="text-center">
+                    <%= link_to '編集する', edit_delivery_path(delivery.id), class: "btn btn-sm btn-success" %>
+                    <%= link_to '削除する', delivery_path(delivery.id), method: :delete,data: { confirm: '本当に消去しますか?' }, class: "btn btn-sm btn-danger" %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </body>

@@ -1,0 +1,147 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+// メイン画面のロゴ
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap');
+
+// 更新失敗時のレイアウト崩れを防ぐ
+.field_with_errors {
+  display: contents;
+}
+
+
+.about-bg {
+   background-image: url('brooke-lark-V4MBq8kue3U-unsplash.jpg');
+   background-size: cover;
+   background-repeat: no-repeat;
+   height: 100vh;
+   position: relative;
+   background-position: center;
+}
+
+.about-bg-wrapper {
+   position: absolute;
+   width: 100vw;
+   height: 100vh;
+   background: rgba(0, 0, 0, 0.5);
+}
+
+// .box-background {
+//   background-image: url('https://source.unsplash.com/SxHxyNx-6YI');
+//   object-fit: cover;
+//   width:100%;
+//   background-repeat: no-repeat;
+//   height: 70vh;
+//   position: relative;
+//   background-position: center;
+// }
+
+// .top-text {
+//   color: rgba(255, 255, 255, 1);
+//   text-align:center;
+//   letter-spacing: 4px;
+//   line-height: 1.5rem;
+//   vertical-align:bottom;
+
+// }
+// .swiper-container {
+  
+//   h1 {
+//     position: absolute;
+//     margin: 0;
+//     padding: 0;
+//     color: white;
+//     font-weight: bold;
+//     font-size: 6vw;
+//     font-family: Quicksand, sans-serif;
+//     text-shadow: black 1px 1px 0px, black -1px 1px 0px,
+//                      black 1px -1px 0px, black -1px -1px 0px;
+//     top: 50%;
+//     left: 50%;
+//     -ms-transform: translate(-50%,-50%);
+//     -webkit-transform: translate(-50%,-50%);
+//     transform: translate(-50%,-50%);
+//     z-index: 2; 
+//   }
+  
+//   img {
+//     width: 100%;
+//   }
+// }
+.swiper-container {
+  width: auto;
+  height: 400px;
+  margin:  0 auto; 
+  // padding-top: 50px;
+  // padding-bottom: 50px;
+  
+}
+
+.swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        background-position: center;
+        background-size: cover;
+        
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+ }
+ 
+ .swiper-pagination{
+   text-align:center;
+ }
+ .main-title{
+   padding-top: 50px;
+   border-top: 1px solid rgba(60,60,60,0.1);
+   display: inline-block; 
+   font-family: 'M PLUS Rounded 1c', sans-serif;
+   span {
+     font-size:30px;
+     margin-bottom:2px;
+   }
+ }
+ 
+ .main-image{
+   box-shadow: 5px 10px 40px rgba(0,0,0,0.25);
+ }
+ 
+ .intro-image-wrap{
+   transition-duration: 0.5s;
+ }
+ 
+ .intro-image{
+  cursor: pointer;
+ }
+ 
+ .intro-image:hover{
+  box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+  transform: translateY(-10px);
+  transition-duration: 0.5s;
+ }

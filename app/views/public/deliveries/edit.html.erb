@@ -1,0 +1,45 @@
+<% if flash[:notice] %>
+    <p class="alert alert-success">
+      <%= flash[:notice] %>
+    </p>
+<% end %>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10">
+          <h4 class="col-md-2 offset-1 bg-light text-center mt-4">配送先編集</h4>
+
+          <% if @delivery.errors.any? %>
+            <div class="alert alert-danger">
+              <%= @delivery.errors.count %>error prohibited this obj from being saved:<br>
+              <% @delivery.errors.full_messages.each do |message| %>
+                <%= message %><br>
+              <% end %>
+            </div>
+          <% end %>
+
+
+            <div class="mt-5">
+              <%= form_with model:@delivery,local:true do |f| %>
+               <div class="form-group">
+                <label for="delivery_postcode">郵便番号（ハイフンなし)</label>
+                <%= f.text_field :postcode, size: 30 %>
+              </div>
+
+            <div class="form-group">
+              <label for="delivery_address">住所　　　　　　　 　 　</label>
+              <%= f.text_field :address, size: 70 %>
+            </div>
+
+            <div class="form-group">
+              <label for="delivery_name">宛名　　　　　　　 　 　</label>
+              <%= f.text_field :name, size: 30 %>
+              <div class="text-right">
+                <%= f.submit "変更内容を保存", class: "btn btn-sm btn-success mb-5" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </body>

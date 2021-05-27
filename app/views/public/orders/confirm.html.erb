@@ -1,0 +1,76 @@
+<div class="container pt-3">
+    <h4 class="col-md-3 offset-1 bg-active text-center">注文情報確認</h4>
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table-order-item-confirm table table-bordered border-dark">
+                <tr class="table-active">
+                    <td>商品名</td>
+                    <td>単価(税込)</td>
+                    <td>数量</td>
+                    <td>小計</td>
+                </tr>
+                <% @cart_items.zip(@subtotals) do |cart_item, subtotal| %>
+                <tr>
+                    <td><%= attachment_image_tag Product.find(cart_item.product_id), :image, format: 'jpeg', size: "40x30" ,fallback: "no_image2.jpg" %><%= Product.find(cart_item.product_id).name %></td>
+                    <td><%= (cart_item.product.price*1.1).round.to_s(:delimited) %></td>
+                    <td><%= cart_item.product_count.to_s(:delimited) %></td>
+                    <td><%= subtotal.to_s(:delimited) %></td>
+                </tr>
+                <% end %>
+            </table>
+        </div>
+
+        <div class="col-md-4">
+            <table class="table table-bordered border-dark" >
+                <tr>
+                    <td class="table-active">送料</td>
+                    <td>800</td>
+                </tr>
+                <tr>
+                    <td class="table-active">商品合計</td>
+                    <td><%= @sum.to_s(:delimited) %></td>
+                </tr>
+                <tr>
+                    <td class="table-active">請求金額</td>
+                    <td><%= @pay_amount.to_s(:delimited) %></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="h5">
+                <tr>
+                    <td class="font-weight-bold", width="150">支払方法</td>
+                    <td><%= @pay_method %></td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">お届け先</td>
+                    <td>〒<%= @order.delivery_postcode %>&nbsp;&nbsp;<%= @order.delivery_address %> </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><%= @order.delivery_name %></td>
+                </tr>
+            </table>
+
+            <div class="order_create_wrapper">
+                <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
+                  <%= f.hidden_field :customer_id, value: current_customer.id %>
+                  <%= f.hidden_field :shipping_fee, value: 800 %>
+                  <%= f.hidden_field :pay_amount, value: @pay_amount %>
+                  <%= f.hidden_field :pay_method ,value: @pay_method %>
+                  <%= f.hidden_field :delivery_name %>
+                  <%= f.hidden_field :delivery_postcode %>
+                  <%= f.hidden_field :delivery_address %>
+                  <%= f.hidden_field :status, value: "入金待ち" %>
+
+                  <%= f.submit "注文を確定する", class: "btn btn-success w-25"%>
+
+                <% end %>
+            </div>
+
+        </div>
+    </div>
+</div>
